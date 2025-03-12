@@ -4,20 +4,16 @@
 #include <cstdlib>
 
 typedef struct _optionalheader {
-    uint8_t magic[2];
-    uint8_t majorlinkerversion[1];
-    uint8_t minorlinkerversion[1];
-    uint8_t sizeofcode[4];
-    uint8_t sizeofinitdata[4];
-    uint8_t sizeofunitdata[4];
-    uint8_t addressofentrypoint[4];
-    uint8_t baseofcode[4];
+    uint16_t magic;
+    uint8_t majorlinkerversion;
+    uint8_t minorlinkerversion;
+    uint32_t sizeofcode;
+    uint32_t sizeofinitdata;
+    uint32_t sizeofunitdata;
+    uint32_t addressofentrypoint;
+    uint32_t baseofcode;
+    uint32_t baseofdata;
 } PE32PlusOptionalHeader;
-
-typedef struct _pe32optionalheader {
-    struct _optionalheader;
-    uint8_t baseofdata[4];
-} PE32OptionalHeader;
 
 typedef struct _optionalwindows {
     uint8_t imagebase[8];
@@ -103,3 +99,71 @@ typedef struct _sectiontable {
     uint8_t numberoflinenumbers[2];
     uint8_t chars[4];
 } SectionTable;
+
+typedef struct _oh_returndata {
+    std::string magic[2];
+    std::string majorlinkerversion[1];
+    std::string minorlinkerversion[1];
+    std::string sizeofcode[4];
+    std::string sizeofinitdata[4];
+    std::string sizeofunitdata[4];
+    std::string addressofentrypoint[4];
+    std::string baseofcode[4];
+    std::string baseofdata[4];
+    std::string imagebase[8];
+    std::string sectionalignment[4];
+    std::string filealignment[4];
+    std::string majoroperatingsystemversion[2];
+    std::string minoroperatingsystemversion[2];
+    std::string majorimageversion[2];
+    std::string minorimageversion[2];
+    std::string majorsubsystemversion[2];
+    std::string minorsubsystemversion[2];
+    std::string win32versionvalue[4];
+    std::string sizeofimage[4];
+    std::string sizeofheaders[4];
+    std::string checksum[4];
+    std::string subsystem[4];
+    std::string dllchars[2];
+    std::string sizeofstackreserve[8];
+    std::string sizeofstackcommit[8];
+    std::string sizeofheapreserve[8];
+    std::string sizeofheapcommit[8];
+    std::string loaderflags[4];
+    std::string numberofrva[4];
+    std::string exporttable;
+    std::string importtable;
+    std::string resourcetable;
+    std::string exceptiontable;
+    std::string certificatetable;
+    std::string basereloctable;
+    std::string debug;
+    std::string arch;
+    std::string globalptr;
+    std::string tlstable;
+    std::string loadconftable;
+    std::string boundimport;
+    std::string iat;
+    std::string delayimport;
+    std::string clr;
+    std::string reserved;
+} oh_returndata;
+
+void get_optional_header(std::ifstream &file) {
+    oh_returndata returndata;
+    PE32PlusOptionalHeader optional_header[1];
+    bool is_pe32plus_file = false;
+    uint64_t location = file.tellg();
+    file.read(reinterpret_cast<char*>(&optional_header->magic), sizeof(optional_header->magic));
+    if (optional_header->magic == 0x20B) {
+        is_pe32plus_file = true;
+    }
+    file.seekg(location);
+    if (!is_pe32plus_file) {
+        file.read(reinterpret_cast<char*>(&optional_header), sizeof(optional_header));
+    }
+    if (is_pe32plus_file) {
+        file.read(reinterpret_cast<char*>(&optional_header), sizeof(optional_header)-sizeof(optional_header->baseofdata));
+    }
+    
+}

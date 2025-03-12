@@ -8,7 +8,8 @@ void init_program(void);
 void open_file(void);
 void check_pe32_file(std::ifstream &file);
 void skip_chars(std::ifstream &file, uint64_t skip);
-bool compare_binary(char* a, std::string b);
+bool compare_char_to_string(char* a, std::string b);
+void get_file_header(std::ifstream &file);
 
 int main(void) {
     init_program();
@@ -42,7 +43,7 @@ void skip_chars(std::ifstream &file, uint64_t skip) {
     return;
 }
 
-bool compare_binary(char* a, std::string b) {
+bool compare_char_to_string(char* a, std::string b) {
     uint64_t size = b.size();
     for (uint64_t i = 0; i < size; i++) {
         if (a[i] != b[i]) {
@@ -55,10 +56,10 @@ bool compare_binary(char* a, std::string b) {
 void check_pe32_file(std::ifstream &file) {
     char signature_offset[2];
     uint32_t here[1];
-    char peh[2];
+    char peh[4];
 
     file.read(signature_offset, sizeof(signature_offset));
-    if (compare_binary(signature_offset, "MZ")) {
+    if (compare_char_to_string(signature_offset, "MZ")) {
         std::cout << "Got MZ!" << std::endl;
     }
     skip_chars(file, 58);
@@ -67,9 +68,10 @@ void check_pe32_file(std::ifstream &file) {
     std::cout << *here << std::endl;
     file.seekg(*here);
     file.read(reinterpret_cast<char*>(&peh), sizeof(peh));
-    if (compare_binary(peh, "PE")) {
+    if (compare_char_to_string(peh, "PE")) {
         std::cout << "Got PE!" << std::endl;
     }
 
+    get_file_header(file);
     return;
 }
