@@ -3,22 +3,31 @@
 #include <cstdint>
 #include <cstdlib>
 
+/* Qt */
+#include "ui/mainwindow.h"
+#include <QApplication>
+
+
 /* Pre defs */
-void init_program(void);
+void init_program(int argc, char *argv[]);
 void open_file(void);
 void check_pe32_file(std::ifstream &file);
 void skip_chars(std::ifstream &file, uint64_t skip);
 bool compare_char_to_string(char* a, std::string b);
 void get_file_header(std::ifstream &file);
 
-int main(void) {
-    init_program();
+int main(int argc, char *argv[]) {
+    init_program(argc, argv);
     return 0;
 }
 
-void init_program(void) {
+void init_program(int argc, char *argv[]) {
     std::cout << "hello!" << std::endl;
     open_file();
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+    a.exec();
     return;
 }
 

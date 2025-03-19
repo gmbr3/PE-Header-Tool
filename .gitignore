@@ -31,3 +31,7 @@
 *.out
 *.app
 pe_header_tool
+
+# Qt generated files
+*.moc.h
+*.ui.h
