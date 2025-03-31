@@ -17,10 +17,12 @@ public:
     explicit FileSelection(QWidget *parent = nullptr);
     ~FileSelection();
     void handleButton();
+    void handleSelection();
 
 private:
     Ui::FileSelection *ui;
     FHInformation fhi;
+    QString filename;
 };
 
 #endif // FILESELECTION_H
