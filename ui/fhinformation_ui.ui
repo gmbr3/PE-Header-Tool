@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FHInformation</class>
+ <widget class="QDockWidget" name="FHInformation">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>419</width>
+    <height>295</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>File Header Information</string>
+  </property>
+  <widget class="QWidget" name="dockWidgetContents">
+   <widget class="QTableWidget" name="FHTable">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>371</width>
+      <height>251</height>
+     </rect>
+    </property>
+    <row>
+     <property name="text">
+      <string>Machine</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Number of Sections</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Time Date Stamp</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Pointer to Symbol Table</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Number of Symbols</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Size of Optional Header</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Characteristics</string>
+     </property>
+    </row>
+    <column>
+     <property name="text">
+      <string>Value</string>
+     </property>
+    </column>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

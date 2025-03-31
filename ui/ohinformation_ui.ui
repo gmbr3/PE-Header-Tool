@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>OHInformation</class>
+ <widget class="QDockWidget" name="OHInformation">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>349</width>
+    <height>527</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Optional Header Information</string>
+  </property>
+  <widget class="QWidget" name="dockWidgetContents">
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>311</width>
+      <height>481</height>
+     </rect>
+    </property>
+    <row>
+     <property name="text">
+      <string>Magic</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Major Linker Version</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Minor Linker Version</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Size of Code</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Size of Initialized Data</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Size of Uninitialized Data</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Address of Entry Point</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Base of Code</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Image Base</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Section Alignment</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>File Alignment</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Major OS Version</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Minor OS Version</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Major Subsystem Version</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>WIN32 Version</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Size of Image</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Size of Headers</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Checksum</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Subsystem</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>DLL Characteristics</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Size of Stack Reserve</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Size of Stack Commit</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Size of Heap Reserve</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Size of Heap Commit</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Loader Flags</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Number of RVA</string>
+     </property>
+    </row>
+    <column>
+     <property name="text">
+      <string/>
+     </property>
+    </column>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

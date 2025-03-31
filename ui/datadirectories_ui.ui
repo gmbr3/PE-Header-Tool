@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DataDirectories</class>
+ <widget class="QDockWidget" name="DataDirectories">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>576</width>
+    <height>537</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Data Directories</string>
+  </property>
+  <widget class="QWidget" name="dockWidgetContents">
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>391</width>
+      <height>491</height>
+     </rect>
+    </property>
+    <row>
+     <property name="text">
+      <string>Export Table</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Import Table</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Resource Table</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Exception Table</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Certificate Table</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Base Relocation Table</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Debug</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Architecture</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Global PTR</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>TLS Table</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Load Config Table</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Bound Import</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>IAT</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Delay Import Descriptor</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>CLR Runtime Header</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Reserved</string>
+     </property>
+    </row>
+    <column>
+     <property name="text">
+      <string>Address</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Size</string>
+     </property>
+    </column>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
