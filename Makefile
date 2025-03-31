@@ -7,12 +7,14 @@ MOC ?= /usr/libexec/qt6/moc
 
 PC := pkg-config
 
-OBJS = main.o file_header.o optional_header.o ui/mainwindow.o
+OBJS = main.o file_header.o optional_header.o ui/mainwindow.o ui/fileselection.o ui/fhinformation.o
 
 CXXFLAGS += $(shell $(PC) --cflags Qt6Widgets)
 LDFLAGS += $(shell $(PC) --libs Qt6Widgets)
 
 ui/mainwindow.cpp: ui/mainwindow_ui.ui.h ui/mainwindow.moc.h
+ui/fileselection.cpp: ui/fileselection_ui.ui.h ui/fileselection.moc.h
+ui/fhinformation.cpp: ui/fhinformation_ui.ui.h ui/fhinformation.moc.h
 
 pe_header_tool: $(OBJS)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@

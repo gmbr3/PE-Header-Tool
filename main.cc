@@ -5,6 +5,7 @@
 
 /* Qt */
 #include "ui/mainwindow.h"
+#include "ui/fileselection.h"
 #include <QApplication>
 
 

@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="continueButton">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -27,7 +27,7 @@
      <string>Continue</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox">
+   <widget class="QCheckBox" name="uefiBox">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -43,7 +43,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_2">
+   <widget class="QCheckBox" name="basicBox">
     <property name="geometry">
      <rect>
       <x>420</x>
@@ -59,7 +59,7 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="progname">
     <property name="geometry">
      <rect>
       <x>220</x>
