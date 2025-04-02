@@ -1,5 +1,5 @@
-#include "fileselection.moc.h"
-#include "fileselection_ui.ui.h"
+#include "fileselection.h"
+#include "ui_fileselection.h"
 
 #include <iostream>
 #include <QFileDialog>

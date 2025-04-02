@@ -30,8 +30,11 @@
 *.exe
 *.out
 *.app
-pe_header_tool
 
-# Qt generated files
-*.moc.h
-*.ui.h
+# Build directory
+build
+
+# Install directory
+bin
+
+

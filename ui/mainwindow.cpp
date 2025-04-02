@@ -1,5 +1,5 @@
-#include "mainwindow.moc.h"
-#include "mainwindow_ui.ui.h"
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
 #include "fileselection.h"
 
 MainWindow::MainWindow(QWidget *parent)

@@ -1,5 +1,5 @@
-#include "fhinformation.moc.h"
-#include "fhinformation_ui.ui.h"
+#include "fhinformation.h"
+#include "ui_fhinformation.h"
 
 FHInformation::FHInformation(QWidget *parent) :
     QDockWidget(parent),
