@@ -1,10 +1,10 @@
 project('pe_header_tool', 'cpp',
   version : '0.1',
   meson_version : '>=1.4.0',
-  default_options : ['warning_level=3', 'cpp_std=gnu++17'])
+  default_options : ['warning_level=3', 'cpp_std=c++17'])
 
 qt6 = import('qt6')
-qt6_dep = dependency('qt6', modules: ['Widgets'])
+qt6_dep = dependency('qt6', modules: ['Widgets','Gui','Core'])
 
 ui_cpp_files = []
 uic_files = []
