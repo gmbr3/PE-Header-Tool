@@ -13,7 +13,6 @@ int main(int argc, char *argv[]) {
 
 void init_program(int argc, char *argv[]) {
     std::cout << "hello!" << std::endl;
-    open_file();
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
@@ -21,17 +20,13 @@ void init_program(int argc, char *argv[]) {
     return;
 }
 
-void open_file(std::string filename) {
-    std::ifstream f(filename, std::ios::binary);
+void open_file(std::ifstream& file, std::string filename) {
+    file = std::ifstream(filename, std::ios::binary);
 
-    if (!f.is_open()) {
+    if (!file.is_open()) {
         std::cout << "Filename: " << filename << std::endl;
         std::cout << "Error opening the file!" << std::endl;
-        return;
     }
-    check_pe32_file(f);
-    f.close();
-    return;
 }
 
 void skip_chars(std::ifstream &file, uint64_t skip) {

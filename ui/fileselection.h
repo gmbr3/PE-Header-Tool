@@ -18,12 +18,14 @@ public:
     ~FileSelection();
     void handleButton();
     void handleSelection();
+    std::string* getFile();
 
 private:
     Ui::FileSelection *ui;
     FHInformation fhi;
     QString text_filename;
-    std::string filename; 
+    std::string filename;
+    std::ifstream file;
 };
 
 #endif // FILESELECTION_H

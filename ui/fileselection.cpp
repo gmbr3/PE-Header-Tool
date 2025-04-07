@@ -22,7 +22,11 @@ FileSelection::~FileSelection()
 
 void FileSelection::handleButton() {
     std::cout << "Button clicked!" << std::endl;
-    fhi.show();
+    if (!text_filename.isNull() && text_filename != "No file selected!") {
+        fhi.setParent(this, Qt::Window);
+        fhi.show();
+        this->hide();
+    }
     return;
 }
 
@@ -36,7 +40,13 @@ void FileSelection::handleSelection() {
         filename = text_filename.toStdString();
         std::cout << "Selected file: " << filename << std::endl;
         text_filename = "Selected file: " + text_filename;
-        open_file(filename);
+        open_file(file,filename);
+        check_pe32_file(file);
     }
     ui->filepath->setText(text_filename);
 }
+
+std::string* FileSelection::getFile() {
+    return &filename;
+}
+
