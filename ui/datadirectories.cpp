@@ -1,5 +1,5 @@
 #include "datadirectories.h"
-#include "ui_datadirectories_ui.h"
+#include "ui_datadirectories.h"
 
 DataDirectories::DataDirectories(QWidget *parent) :
     QDockWidget(parent),

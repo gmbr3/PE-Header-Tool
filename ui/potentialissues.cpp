@@ -1,5 +1,5 @@
 #include "potentialissues.h"
-#include "ui_potentialissues_ui.h"
+#include "ui_potentialissues.h"
 
 PotentialIssues::PotentialIssues(QWidget *parent) :
     QDockWidget(parent),

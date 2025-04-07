@@ -1,5 +1,5 @@
 #include "sectiontable.h"
-#include "ui_sectiontable_ui.h"
+#include "ui_sectiontable.h"
 
 SectionTable::SectionTable(QWidget *parent) :
     QDockWidget(parent),

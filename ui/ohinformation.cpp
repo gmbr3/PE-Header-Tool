@@ -1,5 +1,5 @@
 #include "ohinformation.h"
-#include "ui_ohinformation_ui.h"
+#include "ui_ohinformation.h"
 
 OHInformation::OHInformation(QWidget *parent) :
     QDockWidget(parent),
