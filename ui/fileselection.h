@@ -22,7 +22,8 @@ public:
 private:
     Ui::FileSelection *ui;
     FHInformation fhi;
-    QString filename;
+    QString text_filename;
+    std::string filename; 
 };
 
 #endif // FILESELECTION_H

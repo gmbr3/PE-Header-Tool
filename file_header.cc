@@ -1,40 +1,14 @@
-#include <iostream>
-#include <fstream>
-#include <cstdint>
-#include <cstdlib>
+#include "file_header.h"
 
-typedef struct _fileheader {
-    uint16_t machine;
-    uint8_t numberofsections[2];
-    uint8_t timedatestamp[4];
-    uint8_t pointertosymboltable[4];
-    uint8_t numberofsymbols[4];
-    uint8_t sizeofoptional[2];
-    uint8_t chars[2];
-} FileHeader;
-
-typedef struct _fh_returndata {
-    std::string machine;
-    std::string numberofsections[2];
-    std::string timedatestamp;
-    std::string pointertosymboltable;
-    std::string numberofsymbols;
-    std::string sizeofoptional;
-    std::string chars;
-} fh_returndata;
-
-/* Pre defs */
-void check_machine(uint16_t machine, fh_returndata *returndata);
-void get_optional_header(std::ifstream &file);
-
-void get_file_header(std::ifstream &file) {
+fh_returndata get_file_header(std::ifstream &file) {
     fh_returndata returndata;
     FileHeader current_fh[1];
     file.read(reinterpret_cast<char*>(&current_fh), sizeof(current_fh));
     std::cout << current_fh->machine << std::endl;
     check_machine(current_fh->machine, &returndata);
     get_optional_header(file);
-
+    do_return_data(current_fh, &returndata);
+    return returndata;
 }
 
 void check_machine(uint16_t machine, fh_returndata *returndata) {
@@ -46,3 +20,13 @@ void check_machine(uint16_t machine, fh_returndata *returndata) {
     std::cout << returndata->machine << std::endl;
 }
 
+void do_return_data(FileHeader *current_fh, fh_returndata *returndata) {
+    /* Write filedata to output structure */
+    /* No machine since that is done in check_machine() */
+    returndata->numberofsections = std::to_string(current_fh->numberofsections);
+    returndata->timedatestamp = std::to_string(current_fh->timedatestamp);
+    returndata->pointertosymboltable = std::to_string(current_fh->pointertosymboltable);
+    returndata->numberofsymbols = std::to_string(current_fh->numberofsymbols);
+    returndata->sizeofoptional = std::to_string(current_fh->sizeofoptional);
+    returndata->chars = std::to_string(current_fh->chars);
+}

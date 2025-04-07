@@ -1,21 +1,10 @@
-#include <iostream>
-#include <fstream>
-#include <cstdint>
-#include <cstdlib>
-
 /* Qt */
 #include "ui/mainwindow.h"
 #include "ui/fileselection.h"
 #include <QApplication>
 
+#include "main.h"
 
-/* Pre defs */
-void init_program(int argc, char *argv[]);
-void open_file(void);
-void check_pe32_file(std::ifstream &file);
-void skip_chars(std::ifstream &file, uint64_t skip);
-bool compare_char_to_string(char* a, std::string b);
-void get_file_header(std::ifstream &file);
 
 int main(int argc, char *argv[]) {
     init_program(argc, argv);
@@ -32,10 +21,11 @@ void init_program(int argc, char *argv[]) {
     return;
 }
 
-void open_file(void) {
-    std::ifstream f("test/t2.efi", std::ios::binary);
+void open_file(std::string filename) {
+    std::ifstream f(filename, std::ios::binary);
 
     if (!f.is_open()) {
+        std::cout << "Filename: " << filename << std::endl;
         std::cout << "Error opening the file!" << std::endl;
         return;
     }
@@ -81,7 +71,5 @@ void check_pe32_file(std::ifstream &file) {
     if (compare_char_to_string(peh, "PE")) {
         std::cout << "Got PE!" << std::endl;
     }
-
-    get_file_header(file);
     return;
 }

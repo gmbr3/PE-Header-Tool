@@ -4,6 +4,8 @@
 #include <iostream>
 #include <QFileDialog>
 
+#include "../main.h"
+
 FileSelection::FileSelection(QWidget *parent) :
     QDockWidget(parent),
     ui(new Ui::FileSelection)
@@ -25,14 +27,16 @@ void FileSelection::handleButton() {
 }
 
 void FileSelection::handleSelection() {
-    filename = QFileDialog::getOpenFileName(this,
+    text_filename = QFileDialog::getOpenFileName(this,
         tr("Open PE32 Image"), "/home", tr("UEFI executables (*.efi);;PE32 Files (*.exe *.dll)"));
-    if (filename.isNull()) {
+    if (text_filename.isNull()) {
         std::cout << "No file selected!" << std::endl;
-        filename = "No file selected!";
+        text_filename = "No file selected!";
     } else {
-        std::cout << "Selected file: " << filename.toStdString() << std::endl;
-        filename = "Selected file: " + filename;
+        filename = text_filename.toStdString();
+        std::cout << "Selected file: " << filename << std::endl;
+        text_filename = "Selected file: " + text_filename;
+        open_file(filename);
     }
-    ui->filepath->setText(filename);
+    ui->filepath->setText(text_filename);
 }
