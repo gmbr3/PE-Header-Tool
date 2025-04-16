@@ -12,11 +12,12 @@ int main(int argc, char *argv[]) {
 }
 
 void init_program(int argc, char *argv[]) {
-    std::cout << "hello!" << std::endl;
     QApplication a(argc, argv);
     MainWindow w;
+    int exitcode;
+    std::cout << "hello!" << std::endl;
     w.show();
-    a.exec();
+    exitcode = a.exec();
     return;
 }
 
@@ -48,7 +49,7 @@ bool compare_char_to_string(char* a, std::string b) {
     return true;
 }
 
-void check_pe32_file(std::ifstream &file) {
+void check_pe32_file(std::ifstream &file, uint64_t *location) {
     char signature_offset[2];
     uint32_t here[1];
     char peh[4];
@@ -66,5 +67,6 @@ void check_pe32_file(std::ifstream &file) {
     if (compare_char_to_string(peh, "PE")) {
         std::cout << "Got PE!" << std::endl;
     }
+    *location = file.tellg();
     return;
 }

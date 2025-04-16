@@ -3,10 +3,11 @@
 fh_returndata get_file_header(std::ifstream &file) {
     fh_returndata returndata;
     FileHeader current_fh[1];
+    std::cout << current_fh->machine << std::endl;
     file.read(reinterpret_cast<char*>(&current_fh), sizeof(current_fh));
     std::cout << current_fh->machine << std::endl;
     check_machine(current_fh->machine, &returndata);
-    get_optional_header(file);
+    /* get_optional_header(file); */
     do_return_data(current_fh, &returndata);
     return returndata;
 }

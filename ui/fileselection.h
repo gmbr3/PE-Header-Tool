@@ -5,6 +5,8 @@
 
 #include "fhinformation.h"
 
+class MainWindow;
+
 namespace Ui {
 class FileSelection;
 }
@@ -18,7 +20,9 @@ public:
     ~FileSelection();
     void handleButton();
     void handleSelection();
-    std::string* getFile();
+    void getFile(std::string *rfilename, uint64_t *rlocation);
+    void hideEvent(QHideEvent *event);
+    void closeEvent(QCloseEvent *event);
 
 private:
     Ui::FileSelection *ui;
@@ -26,6 +30,8 @@ private:
     QString text_filename;
     std::string filename;
     std::ifstream file;
+    uint64_t location;
+    MainWindow* rparent;
 };
 
 #endif // FILESELECTION_H

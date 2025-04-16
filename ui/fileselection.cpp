@@ -5,6 +5,7 @@
 #include <QFileDialog>
 
 #include "../main.h"
+#include "mainwindow.h"
 
 FileSelection::FileSelection(QWidget *parent) :
     QDockWidget(parent),
@@ -41,12 +42,32 @@ void FileSelection::handleSelection() {
         std::cout << "Selected file: " << filename << std::endl;
         text_filename = "Selected file: " + text_filename;
         open_file(file,filename);
-        check_pe32_file(file);
+        location = 0;
+        check_pe32_file(file, &location);
     }
     ui->filepath->setText(text_filename);
 }
 
-std::string* FileSelection::getFile() {
-    return &filename;
+void FileSelection::getFile(std::string *rfilename, uint64_t *rlocation) {
+    *rfilename = filename;
+    *rlocation = location;
+}
+
+void FileSelection::hideEvent(QHideEvent *event) {
+    if (event) {
+        std::cout << "FS Hide event!" << std::endl;
+        file.close();
+        text_filename.clear();
+        QWidget::hideEvent(event);
+    }
+}
+
+void FileSelection::closeEvent(QCloseEvent *event) {
+    if (event) {
+        std::cout << "FS Close event!" << std::endl;
+        filename.clear();
+        location = 0;
+        QWidget::closeEvent(event);
+    }
 }
 
