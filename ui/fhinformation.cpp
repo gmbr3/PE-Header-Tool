@@ -27,6 +27,8 @@ void FHInformation::showEvent(QShowEvent *event) {
         returndata = get_file_header(file);
         std::cout << "bong!" << std::endl;
         InfoToTable(&returndata, ui->FHTable);
+        ohi.setParent(this, Qt::Window);
+        ohi.show();
         QWidget::showEvent(event);
     }
     return;
@@ -38,6 +40,11 @@ void FHInformation::hideEvent(QHideEvent *event) {
         file.close();
         QWidget::hideEvent(event);
     }
+}
+
+void FHInformation::getFile(std::string *rfilename, uint64_t *rlocation) {
+    *rfilename = filename;
+    *rlocation = location;
 }
 
 void FHInformation::closeEvent(QCloseEvent *event) {

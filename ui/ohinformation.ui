@@ -14,7 +14,7 @@
    <string>Optional Header Information</string>
   </property>
   <widget class="QWidget" name="dockWidgetContents">
-   <widget class="QTableWidget" name="tableWidget">
+   <widget class="QTableWidget" name="OHTable">
     <property name="geometry">
      <rect>
       <x>10</x>
