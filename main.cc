@@ -14,10 +14,9 @@ int main(int argc, char *argv[]) {
 void init_program(int argc, char *argv[]) {
     QApplication a(argc, argv);
     MainWindow w;
-    int exitcode;
     std::cout << "hello!" << std::endl;
     w.show();
-    exitcode = a.exec();
+    a.exec();
     return;
 }
 
