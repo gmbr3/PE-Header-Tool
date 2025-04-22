@@ -23,6 +23,14 @@ oh_returndata get_optional_header(std::ifstream &file) {
     return returndata;
 }
 
+datadirs_returndata get_data_dirs(std::ifstream &file) {
+    datadirs_returndata dd_returndata;
+    ListOfDataDirs datadirs[1];
+    file.read(reinterpret_cast<char*>(&datadirs), sizeof(datadirs));
+    create_datadirs_return_data(&dd_returndata, datadirs);
+    return dd_returndata;
+}
+
 void create_return_data(oh_returndata *returndata, PE32PlusOptionalHeader *optional_header, PE32PlusWindowsOptional *optional_windows_header) {
     /* Write filedata to output structure */
     returndata->magic = std::to_string(optional_header->magic);
@@ -56,4 +64,40 @@ void create_return_data(oh_returndata *returndata, PE32PlusOptionalHeader *optio
     returndata->loaderflags = std::to_string(optional_windows_header->loaderflags);
     returndata->numberofrva = std::to_string(optional_windows_header->numberofrva);
     /* AWAITING RE-DO FOR DATA DIRECTORIES MULTIPLE POINTS */
+}
+
+void create_datadirs_return_data(datadirs_returndata *dd_returndata, ListOfDataDirs *datadirs) {
+    dd_returndata->exporttable_addr = std::to_string(datadirs->exporttable.virtualaddress);
+    dd_returndata->exporttable_size = std::to_string(datadirs->exporttable.size);
+    dd_returndata->importtable_addr = std::to_string(datadirs->importtable.virtualaddress);
+    dd_returndata->importtable_size = std::to_string(datadirs->importtable.size);
+    dd_returndata->resourcetable_addr = std::to_string(datadirs->resourcetable.virtualaddress);
+    dd_returndata->resourcetable_size = std::to_string(datadirs->resourcetable.size);
+    dd_returndata->exceptiontable_addr = std::to_string(datadirs->exceptiontable.virtualaddress);
+    dd_returndata->exceptiontable_size = std::to_string(datadirs->exceptiontable.size);
+    dd_returndata->certificatetable_addr = std::to_string(datadirs->certificatetable.virtualaddress);
+    dd_returndata->certificatetable_size = std::to_string(datadirs->certificatetable.size);
+    dd_returndata->basereloctable_addr = std::to_string(datadirs->basereloctable.virtualaddress);
+    dd_returndata->basereloctable_size = std::to_string(datadirs->basereloctable.size);
+    dd_returndata->debug_addr = std::to_string(datadirs->debug.virtualaddress);
+    dd_returndata->debug_size = std::to_string(datadirs->debug.size);
+    dd_returndata->arch_addr = std::to_string(datadirs->arch.virtualaddress);
+    dd_returndata->arch_size = std::to_string(datadirs->arch.size);
+    dd_returndata->globalptr_addr = std::to_string(datadirs->globalptr.virtualaddress);
+    dd_returndata->globalptr_size = std::to_string(datadirs->globalptr.size);
+    dd_returndata->tlstable_addr = std::to_string(datadirs->tlstable.virtualaddress);
+    dd_returndata->tlstable_size = std::to_string(datadirs->tlstable.size);
+    dd_returndata->loadconftable_addr = std::to_string(datadirs->loadconftable.virtualaddress);
+    dd_returndata->loadconftable_size = std::to_string(datadirs->loadconftable.size);
+    dd_returndata->boundimport_addr = std::to_string(datadirs->boundimport.virtualaddress);
+    dd_returndata->boundimport_size = std::to_string(datadirs->boundimport.size);
+    dd_returndata->iat_addr = std::to_string(datadirs->iat.virtualaddress);
+    dd_returndata->iat_size = std::to_string(datadirs->iat.size);
+    dd_returndata->delayimport_addr = std::to_string(datadirs->delayimport.virtualaddress);
+    dd_returndata->delayimport_size = std::to_string(datadirs->delayimport.size);
+    dd_returndata->clr_addr = std::to_string(datadirs->clr.virtualaddress);
+    dd_returndata->clr_size = std::to_string(datadirs->clr.size);
+    dd_returndata->reserved_addr = std::to_string(datadirs->reserved.virtualaddress);
+    dd_returndata->reserved_size = std::to_string(datadirs->reserved.size);
+    
 }

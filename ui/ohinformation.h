@@ -5,6 +5,7 @@
 #include <QTableWidget>
 
 #include "../optional_header.h"
+#include "datadirectories.h"
 
 class FHInformation;
 
@@ -22,6 +23,7 @@ public:
     void showEvent(QShowEvent *event);
     void closeEvent(QCloseEvent *event);
     void InfoToTable(oh_returndata *returndata, QTableWidget *table);
+    void getFile(std::string *rfilename, uint64_t *rlocation);
 
 private:
     Ui::OHInformation *ui;
@@ -30,6 +32,7 @@ private:
     oh_returndata returndata;
     FHInformation* rparent;
     uint64_t location;
+    DataDirectories dd;
 };
 
 #endif // OHINFORMATION_H

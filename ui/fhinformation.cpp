@@ -55,6 +55,7 @@ void FHInformation::closeEvent(QCloseEvent *event) {
     }
 }
 
+
 void FHInformation::InfoToTable(fh_returndata *returndata, QTableWidget *table) {
     table->setItem(0,0,new QTableWidgetItem(QString::fromStdString(returndata->machine)));
     table->setItem(1,0,new QTableWidgetItem(QString::fromStdString(returndata->numberofsections)));

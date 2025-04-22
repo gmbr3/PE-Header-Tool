@@ -27,6 +27,8 @@ void OHInformation::showEvent(QShowEvent *event) {
         returndata = get_optional_header(file);
         std::cout << "bong!" << std::endl;
         InfoToTable(&returndata, ui->OHTable);
+        dd.setParent(this, Qt::Window);
+        dd.show();
         QWidget::showEvent(event);
     }
     return;
@@ -38,6 +40,11 @@ void OHInformation::closeEvent(QCloseEvent *event) {
         QWidget::closeEvent(event);
         qApp->quit();
     }
+}
+
+void OHInformation::getFile(std::string *rfilename, uint64_t *rlocation) {
+    *rfilename = filename;
+    *rlocation = location;
 }
 
 void OHInformation::InfoToTable(oh_returndata *returndata, QTableWidget *table) {

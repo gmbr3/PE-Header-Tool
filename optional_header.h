@@ -1,3 +1,6 @@
+#ifndef OPTIONAL_HEADER_H
+#define OPTIONAL_HEADER_H
+
 #include <iostream>
 #include <fstream>
 #include <cstdint>
@@ -131,23 +134,46 @@ typedef struct _oh_returndata {
     std::string sizeofheapcommit;
     std::string loaderflags;
     std::string numberofrva;
-    std::string exporttable;
-    std::string importtable;
-    std::string resourcetable;
-    std::string exceptiontable;
-    std::string certificatetable;
-    std::string basereloctable;
-    std::string debug;
-    std::string arch;
-    std::string globalptr;
-    std::string tlstable;
-    std::string loadconftable;
-    std::string boundimport;
-    std::string iat;
-    std::string delayimport;
-    std::string clr;
-    std::string reserved;
 } oh_returndata;
+
+typedef struct _datadirs_returndata {
+    std::string exporttable_addr;
+    std::string exporttable_size;
+    std::string importtable_addr;
+    std::string importtable_size;
+    std::string resourcetable_addr;
+    std::string resourcetable_size;
+    std::string exceptiontable_addr;
+    std::string exceptiontable_size;
+    std::string certificatetable_addr;
+    std::string certificatetable_size;
+    std::string basereloctable_addr;
+    std::string basereloctable_size;
+    std::string debug_addr;
+    std::string debug_size;
+    std::string arch_addr;
+    std::string arch_size;
+    std::string globalptr_addr;
+    std::string globalptr_size;
+    std::string tlstable_addr;
+    std::string tlstable_size;
+    std::string loadconftable_addr;
+    std::string loadconftable_size;
+    std::string boundimport_addr;
+    std::string boundimport_size;
+    std::string iat_addr;
+    std::string iat_size;
+    std::string delayimport_addr;
+    std::string delayimport_size;
+    std::string clr_addr;
+    std::string clr_size;
+    std::string reserved_addr;
+    std::string reserved_size;
+} datadirs_returndata;
 
 oh_returndata get_optional_header(std::ifstream &file);
 void create_return_data(oh_returndata *returndata, PE32PlusOptionalHeader *optional_header, PE32PlusWindowsOptional *optional_windows_header);
+void create_datadirs_return_data(datadirs_returndata *dd_returndata, ListOfDataDirs *datadirs);
+datadirs_returndata get_data_dirs(std::ifstream &file);
+
+#endif // OPTIONAL_HEADER_H
