@@ -23,8 +23,10 @@ void OHInformation::showEvent(QShowEvent *event) {
         rparent->getFile(&filename, &location);
         open_file(file,filename);
         skip_chars(file, location);
+        std::cout << "OH loc is " << location << std::endl;
         std::cout << "hello!" << std::endl;
         returndata = get_optional_header(file);
+        location = file.tellg();
         std::cout << "bong!" << std::endl;
         InfoToTable(&returndata, ui->OHTable);
         dd.setParent(this, Qt::Window);

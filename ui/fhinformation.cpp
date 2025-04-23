@@ -23,8 +23,10 @@ void FHInformation::showEvent(QShowEvent *event) {
         rparent->getFile(&filename, &location);
         open_file(file,filename);
         skip_chars(file, location);
+        std::cout << "FH loc is " << location << std::endl;
         std::cout << "hello!" << std::endl;
         returndata = get_file_header(file);
+        location = file.tellg();
         std::cout << "bong!" << std::endl;
         InfoToTable(&returndata, ui->FHTable);
         ohi.setParent(this, Qt::Window);

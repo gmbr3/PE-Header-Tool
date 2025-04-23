@@ -43,7 +43,9 @@ void FileSelection::handleSelection() {
         text_filename = "Selected file: " + text_filename;
         open_file(file,filename);
         location = 0;
+        std::cout << "FS loc is " << location << std::endl;
         check_pe32_file(file, &location);
+        location = file.tellg();
     }
     ui->filepath->setText(text_filename);
 }
@@ -56,8 +58,6 @@ void FileSelection::getFile(std::string *rfilename, uint64_t *rlocation) {
 void FileSelection::hideEvent(QHideEvent *event) {
     if (event) {
         std::cout << "FS Hide event!" << std::endl;
-        file.close();
-        text_filename.clear();
         QWidget::hideEvent(event);
     }
 }
@@ -65,8 +65,6 @@ void FileSelection::hideEvent(QHideEvent *event) {
 void FileSelection::closeEvent(QCloseEvent *event) {
     if (event) {
         std::cout << "FS Close event!" << std::endl;
-        filename.clear();
-        location = 0;
         QWidget::closeEvent(event);
     }
 }

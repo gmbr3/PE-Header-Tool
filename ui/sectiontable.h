@@ -23,15 +23,14 @@ public:
     ~SectionTable();
     void showEvent(QShowEvent *event);
     void closeEvent(QCloseEvent *event);
-    void InfoToTable(st_returndata *returndata, QTableWidget *table);
+    void InfoToTable(st_returndata_vector returndata, QTableWidget *table);
     void handleButton();
-    std::vector<std::string> split_sentence(std::string sen);
 
 private:
     Ui::SectionTable *ui;
     std::string filename;
     std::ifstream file;
-    st_returndata returndata;
+    st_returndata_vector returndata;
     fh_returndata fhreturndata;
     DataDirectories* rparent;
     FHInformation* rparent2;

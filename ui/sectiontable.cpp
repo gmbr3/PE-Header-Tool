@@ -25,14 +25,16 @@ void SectionTable::showEvent(QShowEvent *event) {
         rparent->getFile(&filename, &location);
         open_file(file,filename);
         skip_chars(file, location);
+        std::cout << "ST loc is " << location << std::endl;
         rparent2 = dynamic_cast<FHInformation*>(rparent->parent()->parent());
         rparent2->getReturnData(&fhreturndata);
         std::cout << "hello!" << std::endl;
         maxsection = std::stoull(fhreturndata.numberofsections);
         get_section_tables(maxsection, file, &returndata);
+        location = file.tellg();
         std::cout << "bong!" << std::endl;
         currentsection = 0;
-        InfoToTable(&returndata, ui->STTable);
+        InfoToTable(returndata, ui->STTable);
         QWidget::showEvent(event);
     }
     return;
@@ -46,17 +48,25 @@ void SectionTable::closeEvent(QCloseEvent *event) {
     }
 }
 
-void SectionTable::InfoToTable(st_returndata *returndata, QTableWidget *table) {
-
+void SectionTable::InfoToTable(st_returndata_vector returndata, QTableWidget *table) {
+    table->setItem(0,0,new QTableWidgetItem(QString::fromStdString(returndata[currentsection].name)));
+    table->setItem(1,0,new QTableWidgetItem(QString::fromStdString(returndata[currentsection].virtualsize)));
+    table->setItem(2,0,new QTableWidgetItem(QString::fromStdString(returndata[currentsection].virtualaddress)));
+    table->setItem(3,0,new QTableWidgetItem(QString::fromStdString(returndata[currentsection].sizeofrawdata)));
+    table->setItem(4,0,new QTableWidgetItem(QString::fromStdString(returndata[currentsection].pointertorawdata)));
+    table->setItem(5,0,new QTableWidgetItem(QString::fromStdString(returndata[currentsection].pointertorelocations)));
+    table->setItem(6,0,new QTableWidgetItem(QString::fromStdString(returndata[currentsection].numberofrelocations)));
+    table->setItem(7,0,new QTableWidgetItem(QString::fromStdString(returndata[currentsection].numberoflinenumbers)));
+    table->setItem(8,0,new QTableWidgetItem(QString::fromStdString(returndata[currentsection].chars)));
 }
 
 void SectionTable::handleButton() {
     std::cout << "Next button pressed!" << std::endl;
-    if (currentsection < maxsection) {
+    if (currentsection < maxsection-1) {
         currentsection++;
     } else {
         std::cout << "No more sections!" << std::endl;
         currentsection = 0;
     }
-    InfoToTable(&returndata, ui->STTable);
+    InfoToTable(returndata, ui->STTable);
 }

@@ -33,7 +33,7 @@ typedef struct _optionalwindows {
     uint32_t sizeofimage;
     uint32_t sizeofheaders;
     uint32_t checksum;
-    uint32_t subsystem;
+    uint16_t subsystem;
     uint16_t dllchars;
     uint64_t sizeofstackreserve;
     uint64_t sizeofstackcommit;
@@ -57,7 +57,7 @@ typedef struct _optionalpe32windows {
     uint32_t sizeofimage;
     uint32_t sizeofheaders;
     uint32_t checksum;
-    uint32_t subsystem;
+    uint16_t subsystem;
     uint16_t dllchars;
     uint32_t sizeofstackreserve;
     uint32_t sizeofstackcommit;
@@ -192,7 +192,7 @@ void create_return_data(oh_returndata *returndata, PE32PlusOptionalHeader *optio
 void create_datadirs_return_data(datadirs_returndata *dd_returndata, ListOfDataDirs *datadirs);
 datadirs_returndata get_data_dirs(std::ifstream &file);
 void get_section_tables(uint64_t numberofsections, std::ifstream &file, st_returndata_vector *returndata);
-void create_st_return_data(uint64_t numberofsections, st_returndata_vector *returndata, HeaderSectionTables *sectiontables) {
+void create_st_return_data(uint64_t numberofsections, st_returndata_vector *returndata, HeaderSectionTables *sectiontables);
 void char_array_to_string(std::string *str, char *copy, uint64_t size);
 
 #endif // OPTIONAL_HEADER_H
