@@ -27,9 +27,16 @@ void DataDirectories::showEvent(QShowEvent *event) {
         returndata = get_data_dirs(file);
         std::cout << "bong!" << std::endl;
         InfoToTable(&returndata, ui->DDTable);
+        st.setParent(this, Qt::Window);
+        st.show();
         QWidget::showEvent(event);
     }
     return;
+}
+
+void DataDirectories::getFile(std::string *rfilename, uint64_t *rlocation) {
+    *rfilename = filename;
+    *rlocation = location;
 }
 
 void DataDirectories::closeEvent(QCloseEvent *event) {

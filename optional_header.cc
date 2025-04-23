@@ -31,6 +31,13 @@ datadirs_returndata get_data_dirs(std::ifstream &file) {
     return dd_returndata;
 }
 
+void get_section_tables(uint64_t numberofsections, std::ifstream &file, st_returndata_vector *returndata) {
+    HeaderSectionTables sectiontables[numberofsections];
+    file.read(reinterpret_cast<char*>(&sectiontables), sizeof(sectiontables));
+    create_st_return_data(numberofsections, returndata, sectiontables);
+    return;
+}
+
 void create_return_data(oh_returndata *returndata, PE32PlusOptionalHeader *optional_header, PE32PlusWindowsOptional *optional_windows_header) {
     /* Write filedata to output structure */
     returndata->magic = std::to_string(optional_header->magic);
@@ -100,4 +107,29 @@ void create_datadirs_return_data(datadirs_returndata *dd_returndata, ListOfDataD
     dd_returndata->reserved_addr = std::to_string(datadirs->reserved.virtualaddress);
     dd_returndata->reserved_size = std::to_string(datadirs->reserved.size);
     
+}
+
+void char_array_to_string(std::string *str, char *copy, uint64_t size) {
+    for (uint64_t i = 0; i < size; i++) {
+        str->append(std::to_string(copy[i]));
+    }
+}
+ /* Informed by https://www.geeksforgeeks.org/cpp-vector-of-structs/ */
+void create_st_return_data(uint64_t numberofsections, st_returndata_vector *returndata, HeaderSectionTables *sectiontables) {
+    st_returndata st_data;
+    std::string temp;
+    for (uint64_t i = 0; i < numberofsections; i++) {
+        char_array_to_string(&temp, sectiontables[i].name, sizeof(sectiontables[i].name));
+        st_data.name = temp;
+        st_data.virtualsize = std::to_string(sectiontables[i].virtualsize);
+        st_data.virtualaddress = std::to_string(sectiontables[i].virtualaddress);
+        st_data.sizeofrawdata = std::to_string(sectiontables[i].sizeofrawdata);
+        st_data.pointertorawdata = std::to_string(sectiontables[i].pointertorawdata);
+        st_data.pointertorelocations = std::to_string(sectiontables[i].pointertorelocations);
+        st_data.pointertolinenumbers = std::to_string(sectiontables[i].pointertolinenumbers);
+        st_data.numberofrelocations = std::to_string(sectiontables[i].numberofrelocations);
+        st_data.numberoflinenumbers = std::to_string(sectiontables[i].numberoflinenumbers);
+        st_data.chars = std::to_string(sectiontables[i].chars);
+        returndata->push_back(st_data);
+    }
 }

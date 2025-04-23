@@ -24,6 +24,7 @@ public:
     void closeEvent(QCloseEvent *event);
     void InfoToTable(fh_returndata *returndata, QTableWidget *table);
     void getFile(std::string *rfilename, uint64_t *rlocation);
+    void getReturnData(fh_returndata *returndata);
 
 private:
     Ui::FHInformation *ui;

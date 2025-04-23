@@ -5,6 +5,7 @@
 #include <QTableWidget>
 
 #include "../optional_header.h"
+#include "sectiontable.h"
 
 class OHInformation;
 
@@ -22,6 +23,7 @@ public:
     void showEvent(QShowEvent *event);
     void closeEvent(QCloseEvent *event);
     void InfoToTable(datadirs_returndata *returndata, QTableWidget *table);
+    void getFile(std::string *rfilename, uint64_t *rlocation);
 
 private:
     Ui::DataDirectories *ui;
@@ -30,6 +32,7 @@ private:
     datadirs_returndata returndata;
     OHInformation* rparent;
     uint64_t location;
+    SectionTable st;
 };
 
 #endif // DATADIRECTORIES_H

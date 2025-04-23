@@ -47,6 +47,10 @@ void FHInformation::getFile(std::string *rfilename, uint64_t *rlocation) {
     *rlocation = location;
 }
 
+void FHInformation::getReturnData(fh_returndata *rreturndata) {
+    *rreturndata = returndata;
+}
+
 void FHInformation::closeEvent(QCloseEvent *event) {
     if (event) {
         std::cout << " FH Close event!" << std::endl;
@@ -54,7 +58,6 @@ void FHInformation::closeEvent(QCloseEvent *event) {
         qApp->quit();
     }
 }
-
 
 void FHInformation::InfoToTable(fh_returndata *returndata, QTableWidget *table) {
     table->setItem(0,0,new QTableWidgetItem(QString::fromStdString(returndata->machine)));

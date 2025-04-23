@@ -5,6 +5,7 @@
 #include <fstream>
 #include <cstdint>
 #include <cstdlib>
+#include <vector>
 
 typedef struct _optionalheader {
     uint16_t magic;
@@ -91,7 +92,7 @@ typedef struct _optionalldatadirs {
 } ListOfDataDirs;
 
 typedef struct _sectiontable {
-    char name;
+    char name[8];
     uint32_t virtualsize;
     uint32_t virtualaddress;
     uint32_t sizeofrawdata;
@@ -101,7 +102,7 @@ typedef struct _sectiontable {
     uint16_t numberofrelocations;
     uint16_t numberoflinenumbers;
     uint32_t chars;
-} SectionTable;
+} HeaderSectionTables;
 
 typedef struct _oh_returndata {
     std::string magic;
@@ -171,9 +172,27 @@ typedef struct _datadirs_returndata {
     std::string reserved_size;
 } datadirs_returndata;
 
+typedef struct _st_returndata {
+    std::string name;
+    std::string virtualsize;
+    std::string virtualaddress;
+    std::string sizeofrawdata;
+    std::string pointertorawdata;
+    std::string pointertorelocations;
+    std::string pointertolinenumbers;
+    std::string numberofrelocations;
+    std::string numberoflinenumbers;
+    std::string chars;
+} st_returndata;
+
+typedef std::vector<st_returndata> st_returndata_vector;
+
 oh_returndata get_optional_header(std::ifstream &file);
 void create_return_data(oh_returndata *returndata, PE32PlusOptionalHeader *optional_header, PE32PlusWindowsOptional *optional_windows_header);
 void create_datadirs_return_data(datadirs_returndata *dd_returndata, ListOfDataDirs *datadirs);
 datadirs_returndata get_data_dirs(std::ifstream &file);
+void get_section_tables(uint64_t numberofsections, std::ifstream &file, st_returndata_vector *returndata);
+void create_st_return_data(uint64_t numberofsections, st_returndata_vector *returndata, HeaderSectionTables *sectiontables) {
+void char_array_to_string(std::string *str, char *copy, uint64_t size);
 
 #endif // OPTIONAL_HEADER_H

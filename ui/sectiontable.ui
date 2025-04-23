@@ -6,14 +6,93 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>429</width>
+    <height>370</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>DockWidget</string>
+   <string>Section Table</string>
   </property>
-  <widget class="QWidget" name="dockWidgetContents"/>
+  <widget class="QWidget" name="dockWidgetContents">
+   <widget class="QTableWidget" name="STTable">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>281</width>
+      <height>331</height>
+     </rect>
+    </property>
+    <row>
+     <property name="text">
+      <string>Name</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Virtual Size</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Virtual Address</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Size of Raw Data</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Pointer to Raw Data</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Pointer to Relocations</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Pointer to Line Numbers</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Number of Relocations</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Number of Line Numbers</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>Characteristics</string>
+     </property>
+    </row>
+    <column>
+     <property name="text">
+      <string/>
+     </property>
+    </column>
+   </widget>
+   <widget class="QPushButton" name="nextButton">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>300</y>
+      <width>88</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Next Section</string>
+    </property>
+   </widget>
+  </widget>
  </widget>
  <resources/>
  <connections/>
