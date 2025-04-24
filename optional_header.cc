@@ -32,8 +32,12 @@ datadirs_returndata get_data_dirs(std::ifstream &file) {
 }
 
 void get_section_tables(uint64_t numberofsections, std::ifstream &file, st_returndata_vector *returndata) {
-    HeaderSectionTables sectiontables[numberofsections];
-    file.read(reinterpret_cast<char*>(&sectiontables), sizeof(sectiontables));
+    header_section_tables_vector sectiontables;
+    for (uint64_t i = 0; i < numberofsections; i++)  {
+        HeaderSectionTable temp[1] = {};
+        file.read(reinterpret_cast<char*>(&temp), sizeof(temp));
+        sectiontables.push_back(temp[0]);
+    }
     create_st_return_data(numberofsections, returndata, sectiontables);
     return;
 }
@@ -120,7 +124,7 @@ void char_array_to_string(std::string *str, char *copy, uint64_t size) {
     std::cout << "l is " << *str << std::endl;
 }
  /* Informed by https://www.geeksforgeeks.org/cpp-vector-of-structs/ */
-void create_st_return_data(uint64_t numberofsections, st_returndata_vector *returndata, HeaderSectionTables *sectiontables) {
+void create_st_return_data(uint64_t numberofsections, st_returndata_vector *returndata, header_section_tables_vector sectiontables) {
     st_returndata st_data;
     std::string temp;
     for (uint64_t i = 0; i < numberofsections; i++) {

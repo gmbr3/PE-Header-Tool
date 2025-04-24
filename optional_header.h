@@ -102,7 +102,9 @@ typedef struct _sectiontable {
     uint16_t numberofrelocations;
     uint16_t numberoflinenumbers;
     uint32_t chars;
-} HeaderSectionTables;
+} HeaderSectionTable;
+
+typedef std::vector<HeaderSectionTable> header_section_tables_vector;
 
 typedef struct _oh_returndata {
     std::string magic;
@@ -192,7 +194,7 @@ void create_return_data(oh_returndata *returndata, PE32PlusOptionalHeader *optio
 void create_datadirs_return_data(datadirs_returndata *dd_returndata, ListOfDataDirs *datadirs);
 datadirs_returndata get_data_dirs(std::ifstream &file);
 void get_section_tables(uint64_t numberofsections, std::ifstream &file, st_returndata_vector *returndata);
-void create_st_return_data(uint64_t numberofsections, st_returndata_vector *returndata, HeaderSectionTables *sectiontables);
+void create_st_return_data(uint64_t numberofsections, st_returndata_vector *returndata, header_section_tables_vector sectiontables);
 void char_array_to_string(std::string *str, char *copy, uint64_t size);
 
 #endif // OPTIONAL_HEADER_H
