@@ -6,6 +6,8 @@
 #include <cstdint>
 #include <cstdlib>
 
+class PotentialIssues;
+
 /* Pre defs */
 void init_program(int argc, char *argv[]);
 void open_file(std::ifstream& file, std::string filename = "test/t2.efi");

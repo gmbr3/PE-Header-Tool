@@ -55,6 +55,15 @@ void FileSelection::getFile(std::string *rfilename, uint64_t *rlocation) {
     *rlocation = location;
 }
 
+void FileSelection::showEvent(QShowEvent *event) {
+    if (event) {
+        std::cout << "FS Show event!" << std::endl;
+        pi.setParent(this, Qt::Window);
+        pi.show();
+        QWidget::showEvent(event);
+    }
+}
+
 void FileSelection::hideEvent(QHideEvent *event) {
     if (event) {
         std::cout << "FS Hide event!" << std::endl;

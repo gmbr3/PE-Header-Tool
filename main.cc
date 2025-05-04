@@ -4,7 +4,9 @@
 #include <QApplication>
 
 #include "main.h"
+#include "ui/potentialissues.h"
 
+extern PotentialIssues *potential_issues = nullptr;
 
 int main(int argc, char *argv[]) {
     init_program(argc, argv);
@@ -56,6 +58,8 @@ void check_pe32_file(std::ifstream &file, uint64_t *location) {
     file.read(signature_offset, sizeof(signature_offset));
     if (compare_char_to_string(signature_offset, "MZ")) {
         std::cout << "Got MZ!" << std::endl;
+        QMetaObject::invokeMethod(potential_issues, "NewInformation", Qt::QueuedConnection,
+                         QString("Got MZ!"));
     }
     skip_chars(file, 58);
     file.read(reinterpret_cast<char*>(&here), sizeof(here));
@@ -65,6 +69,8 @@ void check_pe32_file(std::ifstream &file, uint64_t *location) {
     file.read(reinterpret_cast<char*>(&peh), sizeof(peh));
     if (compare_char_to_string(peh, "PE")) {
         std::cout << "Got PE!" << std::endl;
+        QMetaObject::invokeMethod(potential_issues, "NewInformation", Qt::QueuedConnection,
+                         QString("Got PE!"));
     }
     *location = file.tellg();
     return;

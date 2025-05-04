@@ -12,7 +12,7 @@ moc_files = []
 uic_out = []
 moc_out = []
 
-ui_names = ['mainwindow','fileselection','fhinformation', 'ohinformation', 'datadirectories', 'sectiontable']
+ui_names = ['mainwindow','fileselection','fhinformation', 'ohinformation', 'datadirectories', 'sectiontable', 'potentialissues']
 
 foreach name : ui_names
   uic_files += 'ui/@0@.ui'.format(name)

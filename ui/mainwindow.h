@@ -20,5 +20,6 @@ public:
 private:
     Ui::MainWindow *ui;
     FileSelection fs;
+
 };
 #endif // MAINWINDOW_H
