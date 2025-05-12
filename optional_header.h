@@ -1,6 +1,7 @@
 #ifndef OPTIONAL_HEADER_H
 #define OPTIONAL_HEADER_H
 
+#include <string>
 #include <iostream>
 #include <fstream>
 #include <cstdint>

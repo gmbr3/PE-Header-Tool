@@ -1,6 +1,7 @@
 #ifndef FILE_HEADER_H
 #define FILE_HEADER_H
 
+#include <string>
 #include <iostream>
 #include <fstream>
 #include <cstdint>
