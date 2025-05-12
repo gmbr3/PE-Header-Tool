@@ -69,4 +69,5 @@ void FHInformation::InfoToTable(fh_returndata *returndata, QTableWidget *table) 
     table->setItem(4,0,new QTableWidgetItem(QString::fromStdString(returndata->numberofsymbols)));
     table->setItem(5,0,new QTableWidgetItem(QString::fromStdString(returndata->sizeofoptional)));
     table->setItem(6,0,new QTableWidgetItem(QString::fromStdString(returndata->chars)));
+    table->resizeRowToContents(6);
 }

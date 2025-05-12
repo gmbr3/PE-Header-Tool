@@ -59,6 +59,7 @@ void SectionTable::InfoToTable(st_returndata_vector returndata, QTableWidget *ta
     table->setItem(7,0,new QTableWidgetItem(QString::fromStdString(returndata[currentsection].numberofrelocations)));
     table->setItem(8,0,new QTableWidgetItem(QString::fromStdString(returndata[currentsection].numberoflinenumbers)));
     table->setItem(9,0,new QTableWidgetItem(QString::fromStdString(returndata[currentsection].chars)));
+    table->resizeRowToContents(9);
 }
 
 void SectionTable::handleButton() {

@@ -1,4 +1,5 @@
 #include "optional_header.h"
+#include "convert_value.h"
 
 oh_returndata get_optional_header(std::ifstream &file) {
     oh_returndata returndata;
@@ -24,6 +25,9 @@ oh_returndata get_optional_header(std::ifstream &file) {
         file.read(reinterpret_cast<char*>(&optional_windows_header), sizeof(optional_windows_header));
     }
     create_return_data(&returndata, optional_header, optional_windows_header);
+    convert_dllchars(optional_windows_header->dllchars, &returndata);
+    convert_subsystem(optional_windows_header->subsystem, &returndata);
+    convert_magic(optional_header->magic, &returndata);
     return returndata;
 }
 
@@ -43,7 +47,6 @@ void pe32_to_pe32plus_optional(PE32PlusWindowsOptional *pe32plus, PE32WindowsOpt
     pe32plus->sizeofheaders = pe32->sizeofheaders;
     pe32plus->checksum = pe32->checksum;
     pe32plus->subsystem = pe32->subsystem;
-    pe32plus->dllchars = pe32->dllchars;
     pe32plus->sizeofstackreserve = pe32->sizeofstackreserve;
     pe32plus->sizeofstackcommit = pe32->sizeofstackcommit;
     pe32plus->sizeofheapreserve = pe32->sizeofheapreserve;
@@ -74,7 +77,6 @@ void get_section_tables(uint64_t numberofsections, std::ifstream &file, st_retur
 
 void create_return_data(oh_returndata *returndata, PE32PlusOptionalHeader *optional_header, PE32PlusWindowsOptional *optional_windows_header) {
     /* Write filedata to output structure */
-    returndata->magic = std::to_string(optional_header->magic);
     returndata->majorlinkerversion = std::to_string(optional_header->majorlinkerversion);
     returndata->minorlinkerversion = std::to_string(optional_header->minorlinkerversion);
     returndata->sizeofcode = std::to_string(optional_header->sizeofcode);
@@ -96,8 +98,6 @@ void create_return_data(oh_returndata *returndata, PE32PlusOptionalHeader *optio
     returndata->sizeofimage = std::to_string(optional_windows_header->sizeofimage);
     returndata->sizeofheaders = std::to_string(optional_windows_header->sizeofheaders);
     returndata->checksum = std::to_string(optional_windows_header->checksum);
-    returndata->subsystem = std::to_string(optional_windows_header->subsystem);
-    returndata->dllchars = std::to_string(optional_windows_header->dllchars);
     returndata->sizeofstackreserve = std::to_string(optional_windows_header->sizeofstackreserve);
     returndata->sizeofstackcommit = std::to_string(optional_windows_header->sizeofstackcommit);
     returndata->sizeofheapreserve = std::to_string(optional_windows_header->sizeofheapreserve);
@@ -169,7 +169,8 @@ void create_st_return_data(uint64_t numberofsections, st_returndata_vector *retu
         st_data.pointertolinenumbers = std::to_string(sectiontables[i].pointertolinenumbers);
         st_data.numberofrelocations = std::to_string(sectiontables[i].numberofrelocations);
         st_data.numberoflinenumbers = std::to_string(sectiontables[i].numberoflinenumbers);
-        st_data.chars = std::to_string(sectiontables[i].chars);
+        st_data.chars = convert_sectionflags(sectiontables[i].chars);
+        std::cout << "chars is " << st_data.chars << std::endl;
         returndata->push_back(st_data);
     }
 }

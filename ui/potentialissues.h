@@ -18,12 +18,13 @@ class PotentialIssues : public QDockWidget
 public:
     explicit PotentialIssues(QWidget *parent = nullptr);
     ~PotentialIssues();
+    void disableSelection(QListWidgetItem *item);
 
 private:
     Ui::PotentialIssues *ui;
-    QBrush information_qbrush;
-    QBrush warning_qbrush;
-    QBrush error_qbrush;
+    QBrush *information_qbrush;
+    QBrush *warning_qbrush;
+    QBrush *error_qbrush;
     QListWidgetItem *newitem;
 
 public slots:

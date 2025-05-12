@@ -29,7 +29,6 @@ typedef struct _fh_returndata {
 
 /* Pre defs */
 fh_returndata get_file_header(std::ifstream &file);
-void check_machine(uint16_t machine, fh_returndata *returndata);
 void do_return_data(FileHeader *current_fh, fh_returndata *returndata);
 
 #endif // FILE_HEADER_H

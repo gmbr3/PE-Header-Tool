@@ -74,6 +74,7 @@ void OHInformation::InfoToTable(oh_returndata *returndata, QTableWidget *table) 
     table->setItem(21,0,new QTableWidgetItem(QString::fromStdString(returndata->checksum)));
     table->setItem(22,0,new QTableWidgetItem(QString::fromStdString(returndata->subsystem)));
     table->setItem(23,0,new QTableWidgetItem(QString::fromStdString(returndata->dllchars)));
+    table->resizeRowToContents(23);
     table->setItem(24,0,new QTableWidgetItem(QString::fromStdString(returndata->sizeofstackreserve)));
     table->setItem(25,0,new QTableWidgetItem(QString::fromStdString(returndata->sizeofstackcommit)));
     table->setItem(26,0,new QTableWidgetItem(QString::fromStdString(returndata->sizeofheapreserve)));
