@@ -197,5 +197,6 @@ datadirs_returndata get_data_dirs(std::ifstream &file);
 void get_section_tables(uint64_t numberofsections, std::ifstream &file, st_returndata_vector *returndata);
 void create_st_return_data(uint64_t numberofsections, st_returndata_vector *returndata, header_section_tables_vector sectiontables);
 void char_array_to_string(std::string *str, char *copy, uint64_t size);
+void pe32_to_pe32plus_optional(PE32PlusWindowsOptional *pe32plus, PE32WindowsOptional *pe32);
 
 #endif // OPTIONAL_HEADER_H

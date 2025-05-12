@@ -13,14 +13,44 @@ oh_returndata get_optional_header(std::ifstream &file) {
     }
     file.seekg(location);
     if (!is_pe32plus_file) {
+        PE32WindowsOptional pe32_optional[1];
         file.read(reinterpret_cast<char*>(&optional_header), sizeof(optional_header));
+        file.read(reinterpret_cast<char*>(&pe32_optional), sizeof(pe32_optional));
+        pe32_to_pe32plus_optional(optional_windows_header, pe32_optional);
     }
     if (is_pe32plus_file) {
+        /* No base of data in PE32+ */
         file.read(reinterpret_cast<char*>(&optional_header), sizeof(optional_header)-sizeof(optional_header->baseofdata));
+        file.read(reinterpret_cast<char*>(&optional_windows_header), sizeof(optional_windows_header));
     }
-    file.read(reinterpret_cast<char*>(&optional_windows_header), sizeof(optional_windows_header));
     create_return_data(&returndata, optional_header, optional_windows_header);
     return returndata;
+}
+
+/* Make PE32 fields the length of PE32+ fields */
+void pe32_to_pe32plus_optional(PE32PlusWindowsOptional *pe32plus, PE32WindowsOptional *pe32) {
+    pe32plus->imagebase = pe32->imagebase;
+    pe32plus->sectionalignment = pe32->sectionalignment;
+    pe32plus->filealignment = pe32->filealignment;
+    pe32plus->majoroperatingsystemversion = pe32->majoroperatingsystemversion;
+    pe32plus->minoroperatingsystemversion = pe32->minoroperatingsystemversion;
+    pe32plus->majorimageversion = pe32->majorimageversion;
+    pe32plus->minorimageversion = pe32->minorimageversion;
+    pe32plus->majorsubsystemversion = pe32->majorsubsystemversion;
+    pe32plus->minorsubsystemversion = pe32->minorsubsystemversion;
+    pe32plus->win32versionvalue = pe32->win32versionvalue;
+    pe32plus->sizeofimage = pe32->sizeofimage;
+    pe32plus->sizeofheaders = pe32->sizeofheaders;
+    pe32plus->checksum = pe32->checksum;
+    pe32plus->subsystem = pe32->subsystem;
+    pe32plus->dllchars = pe32->dllchars;
+    pe32plus->sizeofstackreserve = pe32->sizeofstackreserve;
+    pe32plus->sizeofstackcommit = pe32->sizeofstackcommit;
+    pe32plus->sizeofheapreserve = pe32->sizeofheapreserve;
+    pe32plus->sizeofheapcommit = pe32->sizeofheapcommit;
+    pe32plus->loaderflags = pe32->loaderflags;
+    pe32plus->numberofrva = pe32->numberofrva;
+    return;
 }
 
 datadirs_returndata get_data_dirs(std::ifstream &file) {
