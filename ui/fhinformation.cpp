@@ -65,6 +65,7 @@ void FHInformation::InfoToTable(fh_returndata *returndata, QTableWidget *table) 
     table->setItem(0,0,new QTableWidgetItem(QString::fromStdString(returndata->machine)));
     table->setItem(1,0,new QTableWidgetItem(QString::fromStdString(returndata->numberofsections)));
     table->setItem(2,0,new QTableWidgetItem(QString::fromStdString(returndata->timedatestamp)));
+    table->resizeRowToContents(2);
     table->setItem(3,0,new QTableWidgetItem(QString::fromStdString(returndata->pointertosymboltable)));
     table->setItem(4,0,new QTableWidgetItem(QString::fromStdString(returndata->numberofsymbols)));
     table->setItem(5,0,new QTableWidgetItem(QString::fromStdString(returndata->sizeofoptional)));

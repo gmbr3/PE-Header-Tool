@@ -13,6 +13,16 @@ void check_machine(uint16_t machine, fh_returndata *returndata) {
     std::cout << returndata->machine << std::endl;
 }
 
+void convert_time(uint32_t time, fh_returndata *returndata) {
+    std::tm* tm;
+    char buf[100];
+    std::time_t tp;
+    tp = static_cast<std::time_t>(time);
+    tm = std::gmtime(&tp);
+    std::strftime(buf, sizeof(buf), "%c", tm);
+    char_array_to_string(&(returndata->timedatestamp), buf, sizeof(buf));
+}
+
 
 void deprecated_flag(std::string df) {
     QString df_qstring = QString("Deprecated flag: ") + QString::fromStdString(df);
