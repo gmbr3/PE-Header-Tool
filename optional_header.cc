@@ -143,16 +143,6 @@ void create_datadirs_return_data(datadirs_returndata *dd_returndata, ListOfDataD
     
 }
 
-/* Informed by https://en.cppreference.com/w/cpp/string/basic_string/push_back */
-void char_array_to_string(std::string *str, char *copy, uint64_t size) {
-    for (uint64_t i = 0; i < size; i++) {
-        if (copy[i] == 0) {
-            break;
-        }
-        str->push_back(copy[i]);
-    }
-    std::cout << "l is " << *str << std::endl;
-}
  /* Informed by https://www.geeksforgeeks.org/cpp-vector-of-structs/ */
 void create_st_return_data(uint64_t numberofsections, st_returndata_vector *returndata, header_section_tables_vector sectiontables) {
     st_returndata st_data;

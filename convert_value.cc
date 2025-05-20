@@ -4,6 +4,17 @@
 
 extern PotentialIssues *potential_issues;
 
+/* Informed by https://en.cppreference.com/w/cpp/string/basic_string/push_back */
+void char_array_to_string(std::string *str, char *copy, uint64_t size) {
+    for (uint64_t i = 0; i < size; i++) {
+        if (copy[i] == 0) {
+            break;
+        }
+        str->push_back(copy[i]);
+    }
+    std::cout << "l is " << *str << std::endl;
+}
+
 void check_machine(uint16_t machine, fh_returndata *returndata) {
     if (machine == 0x8664) { returndata->machine = "X86_64"; }
     if (machine == 0x1c2)  { returndata->machine = "ARM Thumb";}

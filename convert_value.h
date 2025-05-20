@@ -22,6 +22,7 @@ std::string convert_sectionflags(uint32_t flags);
 void convert_subsystem(uint16_t subsystem, oh_returndata *returndata);
 void convert_magic(uint16_t magic, oh_returndata *returndata);
 void convert_time(uint32_t time, fh_returndata *returndata);
+void char_array_to_string(std::string *str, char *copy, uint64_t size);
 
 #endif // CONVERT_VALUE_H
 
