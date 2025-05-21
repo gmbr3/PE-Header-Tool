@@ -1,0 +1,53 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/include/qt6/QtWidgets",
+                "/usr/include/qt6",
+                "/usr/include/qt6/QtGui",
+                "/usr/include/qt6/QtCore",
+                "/usr/lib64/qt6/mkspecs/linux-g++"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compileCommands": "F:/CSEC3100-FYP/build/compile_commands.json"
+        },
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "G:\\Qt\\6.9.0\\msvc2022_64\\include\\QtWidgets",
+                "G:\\Qt\\6.9.0\\msvc2022_64\\include\\QtCore",
+                "G:\\Qt\\6.9.0\\msvc2022_64\\include\\QtGui",
+                "G:\\Qt\\6.9.0\\msvc2022_64\\mkspecs\\win32-msvc"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.22621.0",
+            "compilerPath": "C:/Program Files/Microsoft Visual Studio/2022/Professional/VC/Tools/MSVC/14.43.34808/bin/Hostx64/x64/cl.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64",
+            "compilerArgs": [],
+            "mergeConfigurations": false,
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/**",
+                    "G:\\Qt\\6.9.0\\msvc2022_64\\include\\QtCore",
+                    "G:\\Qt\\6.9.0\\msvc2022_64\\include\\QtGui",
+                    "G:\\Qt\\6.9.0\\msvc2022_64\\include\\QtWidgets"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        }
+    ],
+    "version": 4
+}
