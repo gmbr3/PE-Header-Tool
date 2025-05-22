@@ -19,9 +19,16 @@ DataDirectories::~DataDirectories()
 void DataDirectories::showEvent(QShowEvent *event) {
     if (event) {
         std::cout << "Show event!" << std::endl;
+        this->move(200,400);
+        QWidget::showEvent(event);
+    }
+    return;
+}
+
+void DataDirectories::setup() {
         rparent = dynamic_cast<OHInformation*>(parent());
         rparent->getFile(&filename, &location);
-        open_file(file,filename);
+        open_file(file,filename); 
         skip_chars(file, location);
         std::cout << "DD loc is " << location << std::endl;
         std::cout << "hello!" << std::endl;
@@ -29,24 +36,15 @@ void DataDirectories::showEvent(QShowEvent *event) {
         location = file.tellg();
         std::cout << "bong!" << std::endl;
         InfoToTable(&returndata, ui->DDTable);
-        st.setParent(this, Qt::Window);
-        st.show();
-        QWidget::showEvent(event);
-    }
-    return;
+        st = new SectionTable(this);
+        st->setWindowFlags(Qt::Window);
+        st->setAttribute(Qt::WA_DeleteOnClose, false);
+        st->setup();
 }
 
 void DataDirectories::getFile(std::string *rfilename, uint64_t *rlocation) {
     *rfilename = filename;
     *rlocation = location;
-}
-
-void DataDirectories::closeEvent(QCloseEvent *event) {
-    if (event) {
-        std::cout << " DD Close event!" << std::endl;
-        QWidget::closeEvent(event);
-        qApp->quit();
-    }
 }
 
 void DataDirectories::InfoToTable(datadirs_returndata *returndata, QTableWidget *table) {
@@ -84,3 +82,5 @@ void DataDirectories::InfoToTable(datadirs_returndata *returndata, QTableWidget 
     table->setItem(15,1,new QTableWidgetItem(QString::fromStdString(returndata->reserved_size)));
 
 }
+
+

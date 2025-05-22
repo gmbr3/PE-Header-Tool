@@ -20,19 +20,20 @@ class DataDirectories : public QDockWidget
 public:
     explicit DataDirectories(QWidget *parent = nullptr);
     ~DataDirectories();
+    SectionTable *st;
     void showEvent(QShowEvent *event);
-    void closeEvent(QCloseEvent *event);
     void InfoToTable(datadirs_returndata *returndata, QTableWidget *table);
     void getFile(std::string *rfilename, uint64_t *rlocation);
+    void setup();
 
 private:
     Ui::DataDirectories *ui;
-    std::string filename;
+    std::string filename = "";
     std::ifstream file;
     datadirs_returndata returndata;
     OHInformation* rparent;
     uint64_t location;
-    SectionTable st;
 };
+
 
 #endif // DATADIRECTORIES_H

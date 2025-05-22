@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Information</class>
+ <widget class="QMainWindow" name="Information">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>395</width>
+    <height>287</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Information</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QListWidget" name="issueList">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>256</width>
+      <height>192</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>395</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuViews">
+    <property name="title">
+     <string>Views</string>
+    </property>
+    <addaction name="actionFile_Header_Information"/>
+    <addaction name="actionOptional_Header"/>
+    <addaction name="actionData_Directories"/>
+    <addaction name="actionSection_Tables"/>
+   </widget>
+   <widget class="QMenu" name="menuApplication">
+    <property name="title">
+     <string>Application</string>
+    </property>
+    <addaction name="actionClose"/>
+   </widget>
+   <addaction name="menuApplication"/>
+   <addaction name="menuViews"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionFile_Header_Information">
+   <property name="text">
+    <string>File Header</string>
+   </property>
+  </action>
+  <action name="actionOptional_Header">
+   <property name="text">
+    <string>Optional Header</string>
+   </property>
+  </action>
+  <action name="actionData_Directories">
+   <property name="text">
+    <string>Data Directories</string>
+   </property>
+  </action>
+  <action name="actionSection_Tables">
+   <property name="text">
+    <string>Section Tables</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

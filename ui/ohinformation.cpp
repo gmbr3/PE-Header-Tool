@@ -19,6 +19,13 @@ OHInformation::~OHInformation()
 void OHInformation::showEvent(QShowEvent *event) {
     if (event) {
         std::cout << "Show event!" << std::endl;
+        this->move(900,0);
+        QWidget::showEvent(event);
+    }
+    return;
+}
+
+void OHInformation::setup() {
         rparent = dynamic_cast<FHInformation*>(parent());
         rparent->getFile(&filename, &location);
         open_file(file,filename);
@@ -29,19 +36,10 @@ void OHInformation::showEvent(QShowEvent *event) {
         location = file.tellg();
         std::cout << "bong!" << std::endl;
         InfoToTable(&returndata, ui->OHTable);
-        dd.setParent(this, Qt::Window);
-        dd.show();
-        QWidget::showEvent(event);
-    }
-    return;
-}
-
-void OHInformation::closeEvent(QCloseEvent *event) {
-    if (event) {
-        std::cout << " OH Close event!" << std::endl;
-        QWidget::closeEvent(event);
-        qApp->quit();
-    }
+        dd = new DataDirectories(this);
+        dd->setWindowFlags(Qt::Window);
+        dd->setAttribute(Qt::WA_DeleteOnClose, false);
+        dd->setup();
 }
 
 void OHInformation::getFile(std::string *rfilename, uint64_t *rlocation) {
@@ -82,3 +80,5 @@ void OHInformation::InfoToTable(oh_returndata *returndata, QTableWidget *table) 
     table->setItem(28,0,new QTableWidgetItem(QString::fromStdString(returndata->loaderflags)));
     table->setItem(29,0,new QTableWidgetItem(QString::fromStdString(returndata->numberofrva)));
 }
+
+

@@ -19,6 +19,13 @@ FHInformation::~FHInformation()
 void FHInformation::showEvent(QShowEvent *event) {
     if (event) {
         std::cout << "Show event!" << std::endl;
+        this->move(400,0);
+        QWidget::showEvent(event);
+    }
+    return;
+}
+
+void FHInformation::setup() {
         rparent = dynamic_cast<FileSelection*>(parent());
         rparent->getFile(&filename, &location);
         open_file(file,filename);
@@ -29,17 +36,15 @@ void FHInformation::showEvent(QShowEvent *event) {
         location = file.tellg();
         std::cout << "bong!" << std::endl;
         InfoToTable(&returndata, ui->FHTable);
-        ohi.setParent(this, Qt::Window);
-        ohi.show();
-        QWidget::showEvent(event);
-    }
-    return;
+        ohi = new OHInformation(this);
+        ohi->setWindowFlags(Qt::Window);
+        ohi->setAttribute(Qt::WA_DeleteOnClose, false);
+        ohi->setup();
 }
 
 void FHInformation::hideEvent(QHideEvent *event) {
     if (event) {
         std::cout << " FH Hide event!" << std::endl;
-        file.close();
         QWidget::hideEvent(event);
     }
 }
@@ -53,13 +58,6 @@ void FHInformation::getReturnData(fh_returndata *rreturndata) {
     *rreturndata = returndata;
 }
 
-void FHInformation::closeEvent(QCloseEvent *event) {
-    if (event) {
-        std::cout << " FH Close event!" << std::endl;
-        QWidget::closeEvent(event);
-        qApp->quit();
-    }
-}
 
 void FHInformation::InfoToTable(fh_returndata *returndata, QTableWidget *table) {
     table->setItem(0,0,new QTableWidgetItem(QString::fromStdString(returndata->machine)));
@@ -72,3 +70,5 @@ void FHInformation::InfoToTable(fh_returndata *returndata, QTableWidget *table) 
     table->setItem(6,0,new QTableWidgetItem(QString::fromStdString(returndata->chars)));
     table->resizeRowToContents(6);
 }
+
+

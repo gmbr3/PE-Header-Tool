@@ -4,7 +4,7 @@
 #include <QDockWidget>
 
 #include "fhinformation.h"
-#include "potentialissues.h"
+#include "information.h"
 
 class MainWindow;
 
@@ -19,22 +19,21 @@ class FileSelection : public QDockWidget
 public:
     explicit FileSelection(QWidget *parent = nullptr);
     ~FileSelection();
+    FHInformation *fhi;
+    Information *pi;
     void handleButton();
     void handleSelection();
     void getFile(std::string *rfilename, uint64_t *rlocation);
     void showEvent(QShowEvent *event);
     void hideEvent(QHideEvent *event);
-    void closeEvent(QCloseEvent *event);
 
 private:
     Ui::FileSelection *ui;
-    FHInformation fhi;
     QString text_filename;
     std::string filename;
     std::ifstream file;
     uint64_t location;
     MainWindow* rparent;
-    PotentialIssues pi;
 };
 
 #endif // FILESELECTION_H

@@ -22,13 +22,13 @@ public:
     explicit SectionTable(QWidget *parent = nullptr);
     ~SectionTable();
     void showEvent(QShowEvent *event);
-    void closeEvent(QCloseEvent *event);
     void InfoToTable(st_returndata_vector returndata, QTableWidget *table);
     void handleButton();
+    void setup();
 
 private:
     Ui::SectionTable *ui;
-    std::string filename;
+    std::string filename = "";
     std::ifstream file;
     st_returndata_vector returndata;
     fh_returndata fhreturndata;

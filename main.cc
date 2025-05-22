@@ -4,9 +4,14 @@
 #include <QApplication>
 
 #include "main.h"
-#include "ui/potentialissues.h"
 
-extern PotentialIssues *potential_issues = nullptr;
+#include <Qt>
+#include <QString>
+#include <QMetaObject>
+
+#include "ui/information.h"
+
+extern Information *potential_issues;
 
 int main(int argc, char *argv[]) {
     init_program(argc, argv);
@@ -73,5 +78,6 @@ void check_pe32_file(std::ifstream &file, uint64_t *location) {
                          QString("Got PE!"));
     }
     *location = file.tellg();
+    
     return;
 }

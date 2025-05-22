@@ -20,19 +20,19 @@ class OHInformation : public QDockWidget
 public:
     explicit OHInformation(QWidget *parent = nullptr);
     ~OHInformation();
+    DataDirectories *dd;
     void showEvent(QShowEvent *event);
-    void closeEvent(QCloseEvent *event);
     void InfoToTable(oh_returndata *returndata, QTableWidget *table);
     void getFile(std::string *rfilename, uint64_t *rlocation);
+    void setup();
 
 private:
     Ui::OHInformation *ui;
-    std::string filename;
+    std::string filename = "";
     std::ifstream file;
     oh_returndata returndata;
     FHInformation* rparent;
     uint64_t location;
-    DataDirectories dd;
 };
 
 #endif // OHINFORMATION_H

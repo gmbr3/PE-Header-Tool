@@ -7,6 +7,7 @@
 #include "../main.h"
 #include "mainwindow.h"
 
+
 FileSelection::FileSelection(QWidget *parent) :
     QDockWidget(parent),
     ui(new Ui::FileSelection)
@@ -24,8 +25,10 @@ FileSelection::~FileSelection()
 void FileSelection::handleButton() {
     std::cout << "Button clicked!" << std::endl;
     if (!text_filename.isNull() && text_filename != "No file selected!") {
-        fhi.setParent(this, Qt::Window);
-        fhi.show();
+        fhi = new FHInformation(this);
+        fhi->setWindowFlags(Qt::Window);
+        fhi->setAttribute(Qt::WA_DeleteOnClose, false);
+        fhi->setup();
         this->hide();
     }
     return;
@@ -58,8 +61,9 @@ void FileSelection::getFile(std::string *rfilename, uint64_t *rlocation) {
 void FileSelection::showEvent(QShowEvent *event) {
     if (event) {
         std::cout << "FS Show event!" << std::endl;
-        pi.setParent(this, Qt::Window);
-        pi.show();
+        pi = new Information(this);
+        pi->setWindowFlags(Qt::Window);
+        pi->show();
         QWidget::showEvent(event);
     }
 }
@@ -71,10 +75,4 @@ void FileSelection::hideEvent(QHideEvent *event) {
     }
 }
 
-void FileSelection::closeEvent(QCloseEvent *event) {
-    if (event) {
-        std::cout << "FS Close event!" << std::endl;
-        QWidget::closeEvent(event);
-    }
-}
 

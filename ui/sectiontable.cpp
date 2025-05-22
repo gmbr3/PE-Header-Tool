@@ -21,6 +21,13 @@ SectionTable::~SectionTable()
 void SectionTable::showEvent(QShowEvent *event) {
     if (event) {
         std::cout << "Show event!" << std::endl;
+        this->move(0,200);
+        QWidget::showEvent(event);
+    }
+    return;
+}
+
+void SectionTable::setup() {
         rparent = dynamic_cast<DataDirectories*>(parent());
         rparent->getFile(&filename, &location);
         open_file(file,filename);
@@ -35,17 +42,6 @@ void SectionTable::showEvent(QShowEvent *event) {
         std::cout << "bong!" << std::endl;
         currentsection = 0;
         InfoToTable(returndata, ui->STTable);
-        QWidget::showEvent(event);
-    }
-    return;
-}
-
-void SectionTable::closeEvent(QCloseEvent *event) {
-    if (event) {
-        std::cout << " ST Close event!" << std::endl;
-        QWidget::closeEvent(event);
-        qApp->quit();
-    }
 }
 
 void SectionTable::InfoToTable(st_returndata_vector returndata, QTableWidget *table) {

@@ -1,8 +1,12 @@
 #include "convert_value.h"
 
-#include "ui/potentialissues.h"
+#include <Qt>
+#include <QString>
+#include <QMetaObject>
 
-extern PotentialIssues *potential_issues;
+#include "ui/information.h"
+
+extern Information *potential_issues;
 
 /* Informed by https://en.cppreference.com/w/cpp/string/basic_string/push_back */
 void char_array_to_string(std::string *str, char *copy, uint64_t size) {
