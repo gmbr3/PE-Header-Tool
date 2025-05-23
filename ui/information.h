@@ -27,6 +27,8 @@ public:
     void showOHI();
     void showDD();
     void showST();
+    void newFile();
+    void setup();
 
 private:
     Ui::Information *ui;

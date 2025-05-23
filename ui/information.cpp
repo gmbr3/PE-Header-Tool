@@ -22,6 +22,7 @@ Information::Information(QWidget *parent) :
     potential_issues = this;
     ui->setupUi(this);
     fs = dynamic_cast<FileSelection*>(parent);
+    connect(ui->actionNew_File, &QAction::triggered, this, &Information::newFile, Qt::QueuedConnection);
     connect(ui->actionClose, &QAction::triggered, this, &Information::closeApp, Qt::QueuedConnection);
     connect(ui->actionFile_Header_Information, &QAction::triggered, this, &Information::showFHI, Qt::QueuedConnection);
     connect(ui->actionOptional_Header, &QAction::triggered, this, &Information::showOHI, Qt::QueuedConnection);
@@ -76,6 +77,18 @@ void Information::closeEvent(QCloseEvent *event) {
     }
 }
 
+void Information::newFile() {
+    fs->fhi->ohi->dd->st->setAttribute(Qt::WA_DeleteOnClose, true);
+    fs->fhi->ohi->dd->setAttribute(Qt::WA_DeleteOnClose, true);
+    fs->fhi->ohi->setAttribute(Qt::WA_DeleteOnClose, true);
+    fs->fhi->setAttribute(Qt::WA_DeleteOnClose, true);
+    fs->fhi->ohi->dd->st->close();
+    fs->fhi->ohi->dd->close();
+    fs->fhi->ohi->close();
+    fs->fhi->close();
+    fs->show();
+}
+
 void Information::closeApp() {
     qApp->quit();
 }
@@ -96,3 +109,6 @@ void Information::showST() {
     fs->fhi->ohi->dd->st->show();
 }
 
+void Information::setup() {
+    ui->issueList->clear();
+}

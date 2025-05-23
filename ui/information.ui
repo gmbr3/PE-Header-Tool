@@ -47,6 +47,7 @@
     <property name="title">
      <string>Application</string>
     </property>
+    <addaction name="actionNew_File"/>
     <addaction name="actionClose"/>
    </widget>
    <addaction name="menuApplication"/>
@@ -76,6 +77,11 @@
   <action name="actionClose">
    <property name="text">
     <string>Close</string>
+   </property>
+  </action>
+  <action name="actionNew_File">
+   <property name="text">
+    <string>New File</string>
    </property>
   </action>
  </widget>

@@ -61,9 +61,12 @@ void FileSelection::getFile(std::string *rfilename, uint64_t *rlocation) {
 void FileSelection::showEvent(QShowEvent *event) {
     if (event) {
         std::cout << "FS Show event!" << std::endl;
-        pi = new Information(this);
-        pi->setWindowFlags(Qt::Window);
-        pi->show();
+        if (!pi) {
+            pi = new Information(this);
+            pi->setWindowFlags(Qt::Window);
+            pi->show();
+        }
+        pi->setup();
         QWidget::showEvent(event);
     }
 }

@@ -20,7 +20,7 @@ public:
     explicit FileSelection(QWidget *parent = nullptr);
     ~FileSelection();
     FHInformation *fhi;
-    Information *pi;
+    Information *pi = nullptr;
     void handleButton();
     void handleSelection();
     void getFile(std::string *rfilename, uint64_t *rlocation);
