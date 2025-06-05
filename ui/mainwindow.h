@@ -16,6 +16,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void handleButton();
+    void uefiButtonClicked();
+    void basicButtonClicked();
 
 private:
     Ui::MainWindow *ui;

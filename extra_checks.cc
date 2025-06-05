@@ -3,6 +3,7 @@
 #include "ui/information.h"
 
 extern Information *potential_issues;
+extern bool uefi_mode;
 
 /* Some checks are found in convert_value.cc */
 
@@ -31,6 +32,14 @@ void check_data_section_non_executable(uint32_t characteristics) {
     if (characteristics & 0x00000040 || characteristics & 0x00000080) {
         if (characteristics & 0x20000000) {
             QMetaObject::invokeMethod(potential_issues, "NewError", Qt::QueuedConnection, QString("Data section is executable"));
+        }
+    }
+}
+
+void check_valid_uefi_subsystem(uint16_t subsystem) {
+    if (uefi_mode) {
+        if (subsystem != 0x000A && subsystem != 0x000B && subsystem != 0x000C) {
+            QMetaObject::invokeMethod(potential_issues, "NewError", Qt::QueuedConnection, QString("Subsystem is not UEFI"));
         }
     }
 }
