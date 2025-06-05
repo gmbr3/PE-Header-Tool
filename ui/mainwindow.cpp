@@ -17,6 +17,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::handleButton() {
     fs.show();
-    this->hide();
+    this->close();
 }
 
