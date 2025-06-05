@@ -19,6 +19,12 @@ void char_array_to_string(std::string *str, char *copy, uint64_t size) {
     std::cout << "l is " << *str << std::endl;
 }
 
+void convert_to_hex(uint64_t value, std::string* str) {
+	char buf[20];
+	std::snprintf(buf, sizeof(buf), "%#llx", value);
+	char_array_to_string(str, buf, sizeof(buf));
+}
+
 void check_machine(uint16_t machine, fh_returndata *returndata) {
     if (machine == 0x8664) { returndata->machine = "X86_64"; }
     if (machine == 0x1c2)  { returndata->machine = "ARM Thumb";}

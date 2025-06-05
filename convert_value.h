@@ -5,6 +5,7 @@
 #include "optional_header.h"
 
 #include <ctime>
+#include <cstdio>
 
 
 /* Pre defs */
@@ -23,6 +24,7 @@ void convert_subsystem(uint16_t subsystem, oh_returndata *returndata);
 void convert_magic(uint16_t magic, oh_returndata *returndata);
 void convert_time(uint32_t time, fh_returndata *returndata);
 void char_array_to_string(std::string *str, char *copy, uint64_t size);
+void convert_to_hex(uint64_t value, std::string* str);
 
 #endif // CONVERT_VALUE_H
 
