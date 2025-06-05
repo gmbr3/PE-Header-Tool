@@ -1,5 +1,6 @@
 #include "optional_header.h"
 #include "convert_value.h"
+#include "extra_checks.h"
 
 oh_returndata get_optional_header(std::ifstream &file) {
     oh_returndata returndata;
@@ -105,6 +106,9 @@ void create_return_data(oh_returndata *returndata, PE32PlusOptionalHeader *optio
 	convert_to_hex(optional_windows_header->loaderflags, &(returndata->loaderflags));
 	convert_to_hex(optional_windows_header->numberofrva, &(returndata->numberofrva));
     /* AWAITING RE-DO FOR DATA DIRECTORIES MULTIPLE POINTS */
+
+	check_valid_file_alignment(optional_windows_header->filealignment);
+	check_valid_section_alignment(optional_windows_header->sectionalignment, optional_windows_header->filealignment);
 }
 
 void create_datadirs_return_data(datadirs_returndata *dd_returndata, ListOfDataDirs *datadirs) {
@@ -176,6 +180,8 @@ void create_st_return_data(uint64_t numberofsections, st_returndata_vector *retu
 		temp.clear();
 
         st_data.chars = convert_sectionflags(sectiontables[i].chars);
+		check_code_section_non_writeable(sectiontables[i].chars);
+		check_data_section_non_executable(sectiontables[i].chars);
         std::cout << "chars is " << st_data.chars << std::endl;
         returndata->push_back(st_data);
     }

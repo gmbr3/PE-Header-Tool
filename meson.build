@@ -31,7 +31,7 @@ foreach name : moc_files
 endforeach
 
 
-cc_files = ['file_header.cc', 'optional_header.cc', 'main.cc', 'convert_value.cc']
+cc_files = ['file_header.cc', 'optional_header.cc', 'main.cc', 'convert_value.cc', 'extra_checks.cc']
 
 executable('pe_header_tool',
            cc_files,
