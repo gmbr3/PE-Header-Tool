@@ -78,14 +78,16 @@ void Information::closeEvent(QCloseEvent *event) {
 }
 
 void Information::newFile() {
-    fs->fhi->ohi->dd->st->setAttribute(Qt::WA_DeleteOnClose, true);
-    fs->fhi->ohi->dd->setAttribute(Qt::WA_DeleteOnClose, true);
-    fs->fhi->ohi->setAttribute(Qt::WA_DeleteOnClose, true);
-    fs->fhi->setAttribute(Qt::WA_DeleteOnClose, true);
-    fs->fhi->ohi->dd->st->close();
-    fs->fhi->ohi->dd->close();
-    fs->fhi->ohi->close();
-    fs->fhi->close();
+    if (fs->fhi) {
+        fs->fhi->ohi->dd->st->setAttribute(Qt::WA_DeleteOnClose, true);
+        fs->fhi->ohi->dd->st->close();
+        fs->fhi->ohi->dd->setAttribute(Qt::WA_DeleteOnClose, true);
+        fs->fhi->ohi->dd->close();
+        fs->fhi->ohi->setAttribute(Qt::WA_DeleteOnClose, true);
+        fs->fhi->ohi->close();
+        fs->fhi->setAttribute(Qt::WA_DeleteOnClose, true);
+        fs->fhi->close();
+    }
     fs->show();
 }
 
