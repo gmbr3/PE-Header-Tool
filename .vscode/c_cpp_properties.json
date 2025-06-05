@@ -21,6 +21,7 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
+                "G:\\Qt\\6.9.0\\msvc2022_64\\include",
                 "G:\\Qt\\6.9.0\\msvc2022_64\\include\\QtWidgets",
                 "G:\\Qt\\6.9.0\\msvc2022_64\\include\\QtCore",
                 "G:\\Qt\\6.9.0\\msvc2022_64\\include\\QtGui",
@@ -41,9 +42,11 @@
             "browse": {
                 "path": [
                     "${workspaceFolder}/**",
+                    "G:\\Qt\\6.9.0\\msvc2022_64\\include",
                     "G:\\Qt\\6.9.0\\msvc2022_64\\include\\QtCore",
                     "G:\\Qt\\6.9.0\\msvc2022_64\\include\\QtGui",
-                    "G:\\Qt\\6.9.0\\msvc2022_64\\include\\QtWidgets"
+                    "G:\\Qt\\6.9.0\\msvc2022_64\\include\\QtWidgets",
+                    "G:\\Qt\\6.9.0\\msvc2022_64\\mkspecs\\win32-msvc"
                 ],
                 "limitSymbolsToIncludedHeaders": true
             }
