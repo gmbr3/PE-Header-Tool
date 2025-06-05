@@ -44,3 +44,12 @@ void check_valid_uefi_subsystem(uint16_t subsystem) {
     }
 }
 
+void check_valid_uefi_machine_type(uint16_t machine) {
+    if (uefi_mode) {
+        /* Should be 0X1C2 */
+        if (machine == 0x1C0 || machine == 0x1C4) {
+            QMetaObject::invokeMethod(potential_issues, "NewError", Qt::QueuedConnection, QString("Incorrect ARM machine type for UEFI"));
+        }
+    }
+}   
+

@@ -109,6 +109,7 @@ void create_return_data(oh_returndata *returndata, PE32PlusOptionalHeader *optio
 
 	check_valid_file_alignment(optional_windows_header->filealignment);
 	check_valid_section_alignment(optional_windows_header->sectionalignment, optional_windows_header->filealignment);
+	check_valid_uefi_subsystem(optional_windows_header->subsystem);
 }
 
 void create_datadirs_return_data(datadirs_returndata *dd_returndata, ListOfDataDirs *datadirs) {

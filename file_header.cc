@@ -1,5 +1,6 @@
 #include "file_header.h"
 #include "convert_value.h"
+#include "extra_checks.h"
 
 fh_returndata get_file_header(std::ifstream &file) {
     fh_returndata returndata;
@@ -7,6 +8,7 @@ fh_returndata get_file_header(std::ifstream &file) {
     file.read(reinterpret_cast<char*>(&current_fh), sizeof(current_fh));
     std::cout << current_fh->machine << std::endl;
     check_machine(current_fh->machine, &returndata);
+    check_valid_uefi_machine_type(current_fh->machine);
     convert_filechars(current_fh->chars, &returndata);
     convert_time(current_fh->timedatestamp, &returndata);
     /* get_optional_header(file); */
