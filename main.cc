@@ -55,7 +55,7 @@ bool compare_char_to_string(char* a, std::string b) {
     return true;
 }
 
-void check_pe32_file(std::ifstream &file, uint64_t *location) {
+bool check_pe32_file(std::ifstream &file, uint64_t *location) {
     char signature_offset[2];
     uint32_t here[1];
     char peh[4];
@@ -65,6 +65,12 @@ void check_pe32_file(std::ifstream &file, uint64_t *location) {
         std::cout << "Got MZ!" << std::endl;
         QMetaObject::invokeMethod(potential_issues, "NewInformation", Qt::QueuedConnection,
                          QString("Got MZ!"));
+    }
+    else {
+        std::cout << "Not a PE32 file!" << std::endl;
+        QMetaObject::invokeMethod(potential_issues, "NewError", Qt::QueuedConnection,
+                         QString("Not a PE32 file!"));
+        return false;
     }
     skip_chars(file, 58);
     file.read(reinterpret_cast<char*>(&here), sizeof(here));
@@ -78,6 +84,6 @@ void check_pe32_file(std::ifstream &file, uint64_t *location) {
                          QString("Got PE!"));
     }
     *location = file.tellg();
-    
-    return;
+
+    return true;
 }

@@ -47,7 +47,11 @@ void FileSelection::handleSelection() {
         open_file(file,filename);
         location = 0;
         std::cout << "FS loc is " << location << std::endl;
-        check_pe32_file(file, &location);
+        bool ok = check_pe32_file(file, &location);
+        if (!ok) {
+            std::cout << "No file selected!" << std::endl;
+            text_filename = "No file selected!";
+        }
         location = file.tellg();
     }
     ui->filepath->setText(text_filename);
