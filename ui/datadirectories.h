@@ -33,6 +33,8 @@ private:
     datadirs_returndata returndata;
     OHInformation* rparent;
     uint64_t location;
+    oh_returndata ohreturndata;
+    uint64_t maxrva;
 };
 
 

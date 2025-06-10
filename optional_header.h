@@ -69,8 +69,8 @@ typedef struct _optionalpe32windows {
 } PE32WindowsOptional;
 
 typedef struct _datadir {
-    uint32_t virtualaddress;
-    uint32_t size;
+    uint32_t virtualaddress = 0;
+    uint32_t size = 0;
 } DataDirectory;
 
 typedef struct _optionalldatadirs {
@@ -193,7 +193,7 @@ typedef std::vector<st_returndata> st_returndata_vector;
 oh_returndata get_optional_header(std::ifstream &file);
 void create_return_data(oh_returndata *returndata, PE32PlusOptionalHeader *optional_header, PE32PlusWindowsOptional *optional_windows_header);
 void create_datadirs_return_data(datadirs_returndata *dd_returndata, ListOfDataDirs *datadirs);
-datadirs_returndata get_data_dirs(std::ifstream &file);
+datadirs_returndata get_data_dirs(std::ifstream &file, uint64_t numberofrva);
 void get_section_tables(uint64_t numberofsections, std::ifstream &file, st_returndata_vector *returndata);
 void create_st_return_data(uint64_t numberofsections, st_returndata_vector *returndata, header_section_tables_vector sectiontables);
 void pe32_to_pe32plus_optional(PE32PlusWindowsOptional *pe32plus, PE32WindowsOptional *pe32);

@@ -57,10 +57,10 @@ void pe32_to_pe32plus_optional(PE32PlusWindowsOptional *pe32plus, PE32WindowsOpt
     return;
 }
 
-datadirs_returndata get_data_dirs(std::ifstream &file) {
+datadirs_returndata get_data_dirs(std::ifstream &file, uint64_t numberofrva) {
     datadirs_returndata dd_returndata;
     ListOfDataDirs datadirs[1];
-    file.read(reinterpret_cast<char*>(&datadirs), sizeof(datadirs));
+    file.read(reinterpret_cast<char*>(&datadirs), sizeof(DataDirectory) * numberofrva);
     create_datadirs_return_data(&dd_returndata, datadirs);
     return dd_returndata;
 }
@@ -104,12 +104,13 @@ void create_return_data(oh_returndata *returndata, PE32PlusOptionalHeader *optio
 	convert_to_hex(optional_windows_header->sizeofheapreserve, &(returndata->sizeofheapreserve));
 	convert_to_hex(optional_windows_header->sizeofheapcommit, &(returndata->sizeofheapcommit));
 	convert_to_hex(optional_windows_header->loaderflags, &(returndata->loaderflags));
-	convert_to_hex(optional_windows_header->numberofrva, &(returndata->numberofrva));
+	returndata->numberofrva = std::to_string(optional_windows_header->numberofrva);
     /* AWAITING RE-DO FOR DATA DIRECTORIES MULTIPLE POINTS */
 
 	check_valid_file_alignment(optional_windows_header->filealignment);
 	check_valid_section_alignment(optional_windows_header->sectionalignment, optional_windows_header->filealignment);
 	check_valid_uefi_subsystem(optional_windows_header->subsystem);
+	check_datadirs_length(optional_windows_header->numberofrva);
 }
 
 void create_datadirs_return_data(datadirs_returndata *dd_returndata, ListOfDataDirs *datadirs) {

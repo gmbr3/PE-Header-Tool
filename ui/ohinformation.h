@@ -25,6 +25,7 @@ public:
     void InfoToTable(oh_returndata *returndata, QTableWidget *table);
     void getFile(std::string *rfilename, uint64_t *rlocation);
     void setup();
+    void getReturnData(oh_returndata *rreturndata);
 
 private:
     Ui::OHInformation *ui;

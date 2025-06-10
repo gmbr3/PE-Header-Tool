@@ -53,3 +53,11 @@ void check_valid_uefi_machine_type(uint16_t machine) {
     }
 }   
 
+void check_datadirs_length(uint32_t numberofrva) {
+    if (numberofrva > 16) {
+        QMetaObject::invokeMethod(potential_issues, "NewError", Qt::QueuedConnection, QString("Number of Data Directories is greater than 16"));
+    }
+    else if (numberofrva < 16) {
+        QMetaObject::invokeMethod(potential_issues, "NewWarning", Qt::QueuedConnection, QString("Number of Data Directories is less than 16"));
+    }
+}

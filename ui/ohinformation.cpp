@@ -47,6 +47,10 @@ void OHInformation::getFile(std::string *rfilename, uint64_t *rlocation) {
     *rlocation = location;
 }
 
+void OHInformation::getReturnData(oh_returndata *rreturndata) {
+    *rreturndata = returndata;
+}
+
 void OHInformation::InfoToTable(oh_returndata *returndata, QTableWidget *table) {
     table->setItem(0,0,new QTableWidgetItem(QString::fromStdString(returndata->magic)));
     table->setItem(1,0,new QTableWidgetItem(QString::fromStdString(returndata->majorlinkerversion)));

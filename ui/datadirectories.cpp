@@ -32,7 +32,9 @@ void DataDirectories::setup() {
         skip_chars(file, location);
         std::cout << "DD loc is " << location << std::endl;
         std::cout << "hello!" << std::endl;
-        returndata = get_data_dirs(file);
+        rparent->getReturnData(&ohreturndata);
+        maxrva = std::stoull(ohreturndata.numberofrva);
+        returndata = get_data_dirs(file, maxrva);
         location = file.tellg();
         std::cout << "bong!" << std::endl;
         InfoToTable(&returndata, ui->DDTable);
