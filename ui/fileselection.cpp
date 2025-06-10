@@ -41,6 +41,7 @@ void FileSelection::handleSelection() {
         std::cout << "No file selected!" << std::endl;
         text_filename = "No file selected!";
     } else {
+        pi->setup();
         filename = text_filename.toStdString();
         std::cout << "Selected file: " << filename << std::endl;
         text_filename = "Selected file: " + text_filename;
