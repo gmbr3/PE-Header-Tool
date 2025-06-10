@@ -1,7 +1,7 @@
-# CSEC3100-FYP
-Final Year Project
-PE32+ Header Analysis Tool
+# PE Header Tool
 Callum Farmer
+
+Supports both PE32 and PE32+
 
 - **The final executable can be found in the 'bin' folder**
 - All the files for building the GUI are found in the 'ui' folder
