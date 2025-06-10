@@ -4,7 +4,7 @@ project('pe_header_tool', 'cpp',
   default_options : ['warning_level=3', 'cpp_std=c++17'])
 
 qt6 = import('qt6')
-qt6_dep = dependency('qt6', modules: ['Widgets','Gui','Core'])
+qt6_dep = dependency('qt6', modules: ['Widgets','Gui','Core'], main: true)
 
 ui_cpp_files = []
 uic_files = []
@@ -40,4 +40,5 @@ executable('pe_header_tool',
            uic_out,
            moc_out,
            dependencies: qt6_dep,
+           win_subsystem: 'windows',
            install : true)

@@ -3,3 +3,4 @@ meson setup build --prefix /
 meson compile -C build
 meson install -C build --destdir ..
 
+windeployqt --pdb bin
